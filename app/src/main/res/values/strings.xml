@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TeLoCuido</string>
+    <string name="btnIniciarSesion">Iniciar Sesión</string>
+    <string name="titulo_bienvenido">Bienvenido a\nTe Lo Cuido</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="btnResgistrarse">Registrarse</string>
+    <string name="buscas_estacionar">¿Buscas estacionar?</string>
+    <string name="btn_onboard">COMENZAR</string>
+</resources>

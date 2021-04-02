@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/bienvenido"
+        android:layout_width="267dp"
+        android:layout_height="85dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="29dp"
+        android:fontFamily="@font/roboto"
+        android:gravity="top"
+        android:lineSpacingExtra="0sp"
+        android:text="@string/titulo_bienvenido"
+        android:textAppearance="@style/bienvenido"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="24dp" />
+
+    <LinearLayout
+        android:layout_width="316dp"
+        android:layout_height="579dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_alignStart="@+id/bienvenido"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.894"
+        android:layout_alignLeft="@+id/bienvenido">
+
+        <EditText
+            android:id="@+id/correo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Correo electrónico"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/contrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Contraseña"
+            android:inputType="textPassword" />
+
+        <Button
+            android:layout_marginTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:onClick="Login"
+            android:text="@string/btnIniciarSesion"
+            app:backgroundTint="@color/button" />
+
+        <Button
+            android:layout_marginTop="6dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button"
+            android:onClick="registrarUsuario"
+            android:text="@string/btnResgistrarse"
+            app:backgroundTint="@color/button" />
+    </LinearLayout>
+
+</RelativeLayout>
