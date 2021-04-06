@@ -24,6 +24,7 @@
             android:ems="10"
             android:hint="Nombre de Usuario"
             android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/Nombre"
             android:layout_width="match_parent"
@@ -31,6 +32,7 @@
             android:ems="10"
             android:hint="Nombre"
             android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/Apellido"
             android:layout_width="match_parent"
@@ -38,6 +40,7 @@
             android:ems="10"
             android:hint="Apellido"
             android:inputType="textPersonName" />
+
         <EditText
             android:id="@+id/cell"
             android:layout_width="match_parent"
@@ -45,6 +48,7 @@
             android:ems="10"
             android:hint="Celular"
             android:inputType="text|phone" />
+
         <EditText
             android:id="@+id/correo"
             android:layout_width="match_parent"
