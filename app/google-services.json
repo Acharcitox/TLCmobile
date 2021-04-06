@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "177263385090",
+    "firebase_url": "https://telocuido-app-default-rtdb.firebaseio.com",
+    "project_id": "telocuido-app",
+    "storage_bucket": "telocuido-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:177263385090:android:48842fe0de2ba759cae51b",
+        "android_client_info": {
+          "package_name": "com.acharcitox.telocuido"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "177263385090-43o4mkqt2l93kenl3469cfnucjf57sf2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC32YXpjNdorQv7Jh9Xc2GzVLm3HcCgHEo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "177263385090-43o4mkqt2l93kenl3469cfnucjf57sf2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
