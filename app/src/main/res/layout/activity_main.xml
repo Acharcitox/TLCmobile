@@ -71,4 +71,18 @@
             app:backgroundTint="@color/button" />
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnIrMapa"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button"
+        android:fontFamily="@font/roboto"
+        android:text="@string/btn_onboard"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:backgroundTint="@color/button"
+        android:onClick="irMapa"/>
+
 </RelativeLayout>

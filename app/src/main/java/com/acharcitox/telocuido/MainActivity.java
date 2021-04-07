@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
     }
+
+    public void irMapa(View v) {
+        Intent i = new Intent(this, PermisoUbicacion.class);
+        startActivity(i);
+    }
 }
