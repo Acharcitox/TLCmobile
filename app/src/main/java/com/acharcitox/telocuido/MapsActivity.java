@@ -3,6 +3,11 @@ package com.acharcitox.telocuido;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,9 +43,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        // Add a marker in Montevideo  and move the camera
+        LatLng montevideo = new LatLng(-34.905, -56.186);
+        mMap.addMarker(new MarkerOptions().position(montevideo).title("Cuadra de MANOLO "));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
+
     }
 }
