@@ -32,12 +32,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
-    @Override
-    public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-        return true;
-    }
 
     /**
      * Manipulates the map once available.
@@ -52,10 +46,20 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Montevideo  and move the camera
-        LatLng montevideo = new LatLng(-34.906035, -56.20038);
-        mMap.addMarker(new MarkerOptions().position(montevideo).title("Cuadra de MANOLO "));
+
+        LatLng manolo = new LatLng(-34.906035, -56.20038);
+        LatLng pocho = new LatLng(-34.906031, -56.20094);
+        LatLng joselo = new LatLng(-34.90664, -56.19870);
+
+        //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+        mMap.addMarker(new MarkerOptions().position(manolo).title(" MANOLO "));
+        mMap.addMarker(new MarkerOptions().position(pocho).title("POCHO "));
+        mMap.addMarker(new MarkerOptions().position(joselo).title("JOSELO "));
+
+
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(montevideo, 16));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(manolo, 16));
+        mMap.setTrafficEnabled(true);
+
     }
 }
