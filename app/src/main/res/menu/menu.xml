@@ -5,7 +5,25 @@
     <item android:id="@+id/profile"
         android:icon="@drawable/ic_action_name"
         android:title="Profile"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
+        />
+
+    <item android:id="@+id/profdetail"
+        android:icon="@drawable/ic_action_name"
+        android:title="Perfil"
+        app:showAsAction="never"
+        />
+    <item android:id="@+id/historial"
+        android:icon="@drawable/ic_history"
+        android:title="Historial"
+        app:showAsAction="never"
+        />
+
+
+    <item android:id="@+id/monedero"
+        android:icon="@drawable/ic_monedero"
+        android:title="Monedero"
+        app:showAsAction="never"
         />
 
 

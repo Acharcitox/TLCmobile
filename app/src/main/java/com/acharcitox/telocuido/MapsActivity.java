@@ -1,9 +1,11 @@
 package com.acharcitox.telocuido;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -30,6 +32,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
     }
 
+    @Override
+    public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
     /**
      * Manipulates the map once available.
      * This callback is triggered when the map is ready to be used.
@@ -44,9 +53,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Montevideo  and move the camera
-        LatLng montevideo = new LatLng(-34.905, -56.186);
+        LatLng montevideo = new LatLng(-34.906035, -56.20038);
         mMap.addMarker(new MarkerOptions().position(montevideo).title("Cuadra de MANOLO "));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
-
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(montevideo, 16));
     }
 }
