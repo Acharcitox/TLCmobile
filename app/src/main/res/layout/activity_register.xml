@@ -16,13 +16,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+
+        <EditText
+            android:id="@+id/Usuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre de Usuario"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/Nombre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Nombre"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/Apellido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Apellido"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/cell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Celular"
+            android:inputType="text|phone" />
+
         <EditText
             android:id="@+id/correo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textPersonName" />
+            android:inputType="textEmailAddress" />
 
         <EditText
             android:id="@+id/contrasena"
