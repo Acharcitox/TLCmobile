@@ -39,6 +39,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -75,7 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button btnBuscar;
     //variable para mover el boton de recuperar ubicación de ususario
     private View mapView;
-    private final float DEFAULT_ZOOM = 18;
+    private Marker marker;
+    private final float DEFAULT_ZOOM = 16;
 
 
     @Override
@@ -93,7 +95,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
 
         setAutoCompleteFragment();
-
 
     }
 
@@ -219,6 +220,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         PlacesClient placesClient = Places.createClient(this);
         AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autoComplete);
+        autocompleteSupportFragment.setHint(getString(R.string.sv_buscar));
 
         autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG));
         autocompleteSupportFragment.setCountry("UY");
@@ -232,11 +234,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
+                
             }
 
             @Override
             public void onError(@NonNull Status status) {
-                Toast.makeText(getApplicationContext(), status.toString(), Toast.LENGTH_LONG).show();
+
             }
         });
     }

@@ -15,21 +15,33 @@
         android:layout_height="match_parent"
         tools:context="com.example.mapwithmarker.MapsMarkerActivity"/>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_svbuscar"
-        android:layout_margin="10dp"
-        android:elevation="5dp">
+        android:orientation="vertical"
+        android:animateLayoutChanges="true"
+        android:background="@drawable/ic_ellipse_17"
+        >
 
-        <fragment
-            android:id="@+id/autoComplete"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <androidx.cardview.widget.CardView
+            android:layout_width="313dp"
+            android:layout_height="42dp"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="21dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="91dp"
+            android:background="@drawable/bg_svbuscar">
 
-            android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
+            <fragment
+                android:id="@+id/autoComplete"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
     <!--<androidx.appcompat.widget.SearchView
         android:id="@+id/autoComplete"
         android:layout_width="match_parent"
