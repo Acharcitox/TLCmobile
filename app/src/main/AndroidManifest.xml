@@ -16,7 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeLoCuido">
-        <activity android:name=".OnboardActivity">
+        lanzamiento original <activity android:name=".OnboardActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
