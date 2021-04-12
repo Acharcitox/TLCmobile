@@ -1,5 +1,6 @@
 package com.acharcitox.telocuido.model;
 
+import java.text.DateFormat;
 import java.util.Date;
 
 public class Ocupar_lugar {
@@ -8,13 +9,13 @@ public class Ocupar_lugar {
     private Integer Id_conductor;
     private Integer CI_operador;
     private Integer Id_lugar_asignado;
-    private Date Fecha_hora_inicio;
-    private Date Fecha_hora_fin;
+    private String Fecha_hora_inicio;
+    private String Fecha_hora_fin;
     private Boolean Esta_libre;
     private Integer Calificacion;
     private String Comentario;
     private Integer Monto_Propina;
-    private Date Fecha_hora_propina;
+    private String Fecha_hora_propina;
     private String Tipo_denuncia;
     private String Texto_denuncia;
 
@@ -55,20 +56,28 @@ public class Ocupar_lugar {
         Id_lugar_asignado = id_lugar_asignado;
     }
 
-    public Date getFecha_hora_inicio() {
+    public String getFecha_hora_inicio() {
         return Fecha_hora_inicio;
     }
 
-    public void setFecha_hora_inicio(Date fecha_hora_inicio) {
+    public void setFecha_hora_inicio(String fecha_hora_inicio) {
         Fecha_hora_inicio = fecha_hora_inicio;
     }
 
-    public Date getFecha_hora_fin() {
+    public String getFecha_hora_fin() {
         return Fecha_hora_fin;
     }
 
-    public void setFecha_hora_fin(Date fecha_hora_fin) {
+    public void setFecha_hora_fin(String fecha_hora_fin) {
         Fecha_hora_fin = fecha_hora_fin;
+    }
+
+    public String getFecha_hora_propina() {
+        return Fecha_hora_propina;
+    }
+
+    public void setFecha_hora_propina(String fecha_hora_propina) {
+        Fecha_hora_propina = fecha_hora_propina;
     }
 
     public Boolean getEsta_libre() {
@@ -103,13 +112,6 @@ public class Ocupar_lugar {
         Monto_Propina = monto_Propina;
     }
 
-    public Date getFecha_hora_propina() {
-        return Fecha_hora_propina;
-    }
-
-    public void setFecha_hora_propina(Date fecha_hora_propina) {
-        Fecha_hora_propina = fecha_hora_propina;
-    }
 
     public String getTipo_denuncia() {
         return Tipo_denuncia;

@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeLoCuido">
-        lanzamiento original <activity android:name=".OnboardActivity">
+         <activity android:name=".OnboardActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +41,11 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
+        <activity android:name=".ElegirLugarActivity" />
+        <activity android:name=".CalificarActivity" />
+        <activity android:name=".DarPropinaActivity" />
+        <activity android:name=".LiberarLugarActivity" />
+        <activity android:name=".DenunciarActivity" />
         <activity android:name=".MainActivity">
 
         </activity>
