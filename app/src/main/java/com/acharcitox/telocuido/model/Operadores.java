@@ -8,7 +8,7 @@ public class Operadores {
     private String Nombre;
     private String Apellido;
     private String Direccion;
-    private Integer Telefono;
+    private String Telefono;
     private String Mail;
     private String Password;
     private Boolean Estado;
@@ -61,11 +61,11 @@ public class Operadores {
         Direccion = direccion;
     }
 
-    public Integer getTelefono() {
+    public String getTelefono() {
         return Telefono;
     }
 
-    public void setTelefono(Integer telefono) {
+    public void setTelefono(String telefono) {
         Telefono = telefono;
     }
 

@@ -2,7 +2,7 @@ package com.acharcitox.telocuido.model;
 
 public class Conductores {
 //Campos de la base de datos
-    private Integer Id_conductor;
+    private String Id_conductor;
     private String Mail;
     private String usuario;
     private String Password;
@@ -14,11 +14,12 @@ public class Conductores {
     public Conductores() {
     }
 // Getters and Setters
-    public Integer getId_conductor() {
+
+    public String getId_conductor() {
         return Id_conductor;
     }
 
-    public void setId_conductor(Integer id_conductor) {
+    public void setId_conductor(String id_conductor) {
         Id_conductor = id_conductor;
     }
 
@@ -81,6 +82,6 @@ public class Conductores {
     //ToString
     @Override
     public String toString() {
-        return Mail;
+        return Id_conductor;
     }
 }
