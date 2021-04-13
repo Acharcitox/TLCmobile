@@ -17,10 +17,9 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:visibility="invisible"/>
+            android:layout_height="?attr/actionBarSize"/>
 
-        <!-- carga fragmento del Mapa -->
+        <!-- carga fragmento del Mapa  -->
 
         <fragment
             android:id="@+id/map"
@@ -29,9 +28,9 @@
             android:layout_height="match_parent"
             tools:context=".MapsActivity" />
 
+
+
     </LinearLayout>
-
-
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"

@@ -7,4 +7,13 @@
     <string name="buscas_estacionar">¿Buscas estacionar?</string>
     <string name="btn_onboard">COMENZAR</string>
     <string name="copyright">Todos los derechos Reservados</string>
+    <string name="title_click">Title click</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="menu_profile">Perfil</string>
+    <string name="menu_wallet">Monedero</string>
+    <string name="menu_history">Historial</string>
+    <string name="menu_help">Ayuda</string>
+    <string name="menu_exit">Salir</string>
+    <string name="menu_group">Group</string>
 </resources>
