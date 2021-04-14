@@ -28,8 +28,6 @@
             android:layout_height="match_parent"
             tools:context=".MapsActivity" />
 
-
-
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

@@ -20,7 +20,7 @@ public class OnboardActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
         adapter = new SlideViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
-        if (isOpenAlready()) {
+        /*if (isOpenAlready()) {
             Intent i = new Intent(OnboardActivity.this, MainActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK| Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(i);
@@ -28,7 +28,7 @@ public class OnboardActivity extends AppCompatActivity {
             SharedPreferences.Editor editor = getSharedPreferences("slide", MODE_PRIVATE).edit();
             editor.putBoolean("slide", true);
             editor.commit();
-        }
+        }*/
     }
 
     private boolean isOpenAlready() {

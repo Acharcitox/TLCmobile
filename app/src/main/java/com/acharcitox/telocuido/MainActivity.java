@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void Login (View v) {
-        Intent i = new Intent(this, MapsActivity.class);
+        Intent i = new Intent(this, PermisosActivity.class);
         startActivity(i);
     }
 
