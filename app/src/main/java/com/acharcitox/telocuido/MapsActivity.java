@@ -24,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -43,6 +44,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -51,9 +59,12 @@ import com.google.android.material.navigation.NavigationView;
 
 
 import com.google.android.material.navigation.NavigationView;
+
+import java.util.Arrays;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 101;
     private GoogleMap mMap;
 
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -86,8 +97,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapView = mapFragment.getView();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
-
-
+        setAutoCompleteFragment();
     }
 
     /**
@@ -215,5 +225,38 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
         /*mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(manolo, 16));*/
+    }
+
+    //Maneja la api Places de google
+    private void setAutoCompleteFragment () {
+
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), getString(R.string.api_key));
+        }
+        PlacesClient placesClient = Places.createClient(this);
+        AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autoComplete);
+        autocompleteSupportFragment.setHint(getString(R.string.sv_buscar));
+
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG));
+        autocompleteSupportFragment.setCountry("UY");
+
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
+
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+
+            }
+        });
     }
 }

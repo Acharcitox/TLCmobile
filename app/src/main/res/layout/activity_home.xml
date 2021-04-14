@@ -17,7 +17,16 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
+            android:layout_height="?attr/actionBarSize"
+            map:popupTheme="@style/SplashTheme">
+            
+            <fragment
+                android:id="@+id/autoComplete"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"/>
+
+        </com.google.android.material.appbar.MaterialToolbar>
 
         <!-- carga fragmento del Mapa  -->
 
