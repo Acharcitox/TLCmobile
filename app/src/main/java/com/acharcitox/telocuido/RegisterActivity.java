@@ -95,7 +95,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     private void validacion() {
-        String Usuario = editTextUsuario.getText().toString();
+        String Usuario = editTextUsuario.getText().toString(); /*Por qué? si ya tenemos nombre y apellido y el inicio de sesión lo hacemos con el mail*/
         String Nombre = editTextNombre.getText().toString();
         String Apellido = editTextApellido.getText().toString();
         String Telefono = editTextTelefono.getText().toString();
