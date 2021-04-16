@@ -40,13 +40,14 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".LoginActivity" />
         <activity android:name=".ElegirLugarActivity" />
         <activity android:name=".CalificarActivity" />
         <activity android:name=".DarPropinaActivity" />
         <activity android:name=".LiberarLugarActivity" />
         <activity android:name=".DenunciarActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
 
         <meta-data
             android:name="preloaded_fonts"

@@ -6,9 +6,9 @@ import java.util.Date;
 public class Ocupar_lugar {
     //Campos de la base de datos
     private String Id_transaccion;
-    private Integer Id_conductor;
+    private String Id_conductor;
     private Integer CI_operador;
-    private Integer Id_lugar_asignado;
+    private String Id_lugar_asignado;
     private String Fecha_hora_inicio;
     private String Fecha_hora_fin;
     private Boolean Esta_libre;
@@ -32,12 +32,20 @@ public class Ocupar_lugar {
         Id_transaccion = id_transaccion;
     }
 
-    public Integer getId_conductor() {
+    public String getId_conductor() {
         return Id_conductor;
     }
 
-    public void setId_conductor(Integer id_conductor) {
+    public void setId_conductor(String id_conductor) {
         Id_conductor = id_conductor;
+    }
+
+    public String getId_lugar_asignado() {
+        return Id_lugar_asignado;
+    }
+
+    public void setId_lugar_asignado(String id_lugar_asignado) {
+        Id_lugar_asignado = id_lugar_asignado;
     }
 
     public Integer getCI_operador() {
@@ -46,14 +54,6 @@ public class Ocupar_lugar {
 
     public void setCI_operador(Integer CI_operador) {
         this.CI_operador = CI_operador;
-    }
-
-    public Integer getId_lugar_asignado() {
-        return Id_lugar_asignado;
-    }
-
-    public void setId_lugar_asignado(Integer id_lugar_asignado) {
-        Id_lugar_asignado = id_lugar_asignado;
     }
 
     public String getFecha_hora_inicio() {
