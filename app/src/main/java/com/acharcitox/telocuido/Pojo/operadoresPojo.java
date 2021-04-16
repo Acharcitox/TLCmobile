@@ -3,11 +3,11 @@ package com.acharcitox.telocuido.Pojo;
 // Esta es la clase orientada a los objetos
 public class operadoresPojo {
 
-    private String tipo_operador;
-    private String Nombre;
-    private int Calificacion_promedio;
-    private float Latitud;
-    private float Longitude;
+    public String tipo_operador;
+    public String Nombre;
+    public String Calificacion_promedio;
+    public float Latitud;
+    public float Longitude;
 
     public operadoresPojo() {
 
@@ -21,7 +21,7 @@ public class operadoresPojo {
         return Nombre;
     }
 
-    public int getCalificacion_promedio() {
+    public String getCalificacion_promedio() {
         return Calificacion_promedio;
     }
 
