@@ -37,15 +37,15 @@
         android:layout_alignLeft="@+id/bienvenido">
 
         <EditText
-            android:id="@+id/correo"
+            android:id="@+id/eTcorreoLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Correo electrónico"
+            android:hint="Correo"
             android:inputType="textPersonName" />
 
         <EditText
-            android:id="@+id/contrasena"
+            android:id="@+id/eTcontrasenaLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -53,11 +53,11 @@
             android:inputType="textPassword" />
 
         <Button
+            android:id='@+id/btnLogin'
             android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/button"
-            android:onClick="Login"
             android:text="@string/btnIniciarSesion"
             app:backgroundTint="@color/button" />
 
@@ -69,6 +69,14 @@
             android:onClick="registrarUsuario"
             android:text="@string/btnResgistrarse"
             app:backgroundTint="@color/button" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvId_con"
+            android:text="">
+        </TextView>
+
     </LinearLayout>
 
 </RelativeLayout>
