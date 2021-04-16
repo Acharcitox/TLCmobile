@@ -10,9 +10,13 @@ import androidx.fragment.app.FragmentActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
+import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,7 +27,10 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.acharcitox.telocuido.Pojo.operadoresPojo;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResolvableApiException;
+import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -36,6 +43,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -43,6 +51,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.net.PlacesClient;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
+import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.android.material.navigation.NavigationView;
 
 
@@ -51,10 +66,30 @@ import com.google.android.material.navigation.NavigationView;
 
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.security.cert.PolicyNode;
+import java.util.ArrayList;
+import java.util.Arrays;
 
+public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
+        GoogleMap.OnMarkerClickListener {
+
+    private static final int AUTOCOMPLETE_REQUEST_CODE = 101;
     private GoogleMap mMap;
+
+    // variables para marcar operadores en mapa
+    private ArrayList<Marker> tmpRealTimeMarkers = new ArrayList<>();
+    private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
+    private DatabaseReference mDatabase;
+    private Marker marker;
+    DataSnapshot dataSnapshot;
+
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -68,8 +103,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private Button btnBuscar;
     //variable para mover el boton de recuperar ubicación de ususario
     private View mapView;
-    private Marker marker;
     private final float DEFAULT_ZOOM = 17;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -85,9 +120,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         Toolbar toolbar = findViewById(R.id.toolbar);
         mapView = mapFragment.getView();
 
+        // Esto para traer los datos de los operadores de firebase
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+
+
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
 
-
+        setAutoCompleteFragment();
     }
 
     /**
@@ -106,7 +145,61 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         mMap.setMyLocationEnabled(true);/*Como ya tengo los permisos en otra activity es solo poner en true*/
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setTrafficEnabled(true);
+
+        // inicializa los marcadores
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                // hacemos una ciclo for por todos los operadores guardados
+                for (Marker marker : realTimeMarkers) {
+                    marker.remove();
+                }
+                // guardamos los marcaddores en tmprealtimemarkers
+                for (DataSnapshot s : dataSnapshot.getChildren()) {
+                    operadoresPojo operadores = s.getValue(operadoresPojo.class);
+                    float latitud = operadores.getLatitud();
+                    float longitud = operadores.getLongitude();
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    markerOptions.position(new LatLng(latitud, longitud));
+                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                }
+
+                realTimeMarkers.clear();
+                realTimeMarkers.addAll(tmpRealTimeMarkers);// borramos los marcadores para que no se amontonen
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        /*googleMap.setOnMarkerClickListener(this);
+
+        int height = 80;
+        int width = 80;
+        /*BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.icon_prueba_cuidacoches);
+        Bitmap b = bitmapDrawable.getBitmap();*/
+        /*final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);*/
+        /*mOperadores.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot s : dataSnapshot.getChildren()) {
+                    operadoresPojo operadores = s.getValue(operadoresPojo.class);
+                    LatLng latLng = new LatLng(operadores.Latitud, operadores.Longitude);
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(operadores.Nombre)).setIcon(BitmapDescriptorFactory.defaultMarker());
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });*/
+
 
         //acá movemos el botón de recuperación de ubicación de usuario para abajo y que no quede tapado por el SearchView
         if(mapView != null && mapView.findViewById(Integer.parseInt("1")) != null)  {
@@ -114,8 +207,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams) locationBtn.getLayoutParams();
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_TOP, 0);
             layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-            layoutParams.setMargins(0,0, 40, 40);
+            layoutParams.setMargins(0,0, 40, 260);
         }
+
 
         //comprueba si el Gps está conectado y sino le pide al usuario
         LocationRequest locationRequest = LocationRequest.create();
@@ -174,6 +268,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                             LastLocation = task.getResult();
                             if(LastLocation != null) {
                                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(LastLocation.getLatitude(), LastLocation.getLongitude()), DEFAULT_ZOOM));
+                                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(LastLocation.getLatitude(), LastLocation.getLongitude()), DEFAULT_ZOOM));
                             } else {
                                 final LocationRequest locationRequest = LocationRequest.create();
                                 locationRequest.setInterval(1000);
@@ -189,6 +284,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                         }
                                         LastLocation = locationResult.getLastLocation();
                                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(LastLocation.getLatitude(), LastLocation.getLongitude()), DEFAULT_ZOOM));
+                                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(LastLocation.getLatitude(), LastLocation.getLongitude()), DEFAULT_ZOOM));
                                         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
                                     }
                                 };
@@ -216,4 +312,72 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
         /*mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(manolo, 16));*/
     }
+
+    //Maneja la api Places de google
+    private void setAutoCompleteFragment () {
+
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), getString(R.string.api_key));
+        }
+        PlacesClient placesClient = Places.createClient(this);
+        AutocompleteSupportFragment autocompleteSupportFragment = (AutocompleteSupportFragment)
+                getSupportFragmentManager().findFragmentById(R.id.autoComplete);
+        autocompleteSupportFragment.setHint(getString(R.string.sv_buscar));
+
+        autocompleteSupportFragment.setPlaceFields(Arrays.asList(Place.Field.ADDRESS, Place.Field.LAT_LNG));
+        autocompleteSupportFragment.setCountry("UY");
+
+        autocompleteSupportFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+            @Override
+            public void onPlaceSelected(@NonNull Place place) {
+
+                mMap.clear();
+                mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
+                Log.i("Tag", "Lugar elegido: " + place.getAddress());
+            }
+
+            @Override
+            public void onError(@NonNull Status status) {
+                // TODO
+            }
+        });
+    }
+
+    /*private void operadores (GoogleMap googleMap) {
+        mMap = googleMap;
+
+        googleMap.setOnMarkerClickListener(this);
+
+        int height = 80;
+        int width = 80;
+        BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.icon_prueba_cuidacoches);
+        Bitmap b = bitmapDrawable.getBitmap();
+        final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
+        mOperadores.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot s : dataSnapshot.getChildren()) {
+                    operadoresPojo operadores = s.getValue(operadoresPojo.class);
+                    LatLng latLng = new LatLng(operadores.Latitud, operadores.Longitude);
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(operadores.Nombre)).setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
+                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }*/
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
 }
