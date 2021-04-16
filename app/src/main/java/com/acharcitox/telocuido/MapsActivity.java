@@ -88,7 +88,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
     private DatabaseReference mDatabase;
     private Marker marker;
-    DataSnapshot dataSnapshot;
+    private DataSnapshot dataSnapshot;
 
 
     FusedLocationProviderClient fusedLocationProviderClient;
@@ -149,7 +149,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.setTrafficEnabled(true);
 
         // inicializa los marcadores
-        mDatabase.addValueEventListener(new ValueEventListener() {
+
+        mDatabase.child("Operadores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 // hacemos una ciclo for por todos los operadores guardados
