@@ -20,9 +20,9 @@ public class Operadores {
     private Float Latitud;
     private Float Longitud;
     private Integer Cantidad_restante_lugares;
-    private Date Hora_inicio_trabajo;
-    private Date Hora_fin_trabajo;
-    private String Calificacion_promedio;
+    private String Hora_inicio_trabajo;
+    private String Hora_fin_trabajo;
+    private Integer Calificacion_promedio;
 
     //Constructor
     public Operadores() {
@@ -157,27 +157,27 @@ public class Operadores {
         Cantidad_restante_lugares = cantidad_restante_lugares;
     }
 
-    public Date getHora_inicio_trabajo() {
+    public String getHora_inicio_trabajo() {
         return Hora_inicio_trabajo;
     }
 
-    public void setHora_inicio_trabajo(Date hora_inicio_trabajo) {
+    public void setHora_inicio_trabajo(String hora_inicio_trabajo) {
         Hora_inicio_trabajo = hora_inicio_trabajo;
     }
 
-    public Date getHora_fin_trabajo() {
+    public String getHora_fin_trabajo() {
         return Hora_fin_trabajo;
     }
 
-    public void setHora_fin_trabajo(Date hora_fin_trabajo) {
+    public void setHora_fin_trabajo(String hora_fin_trabajo) {
         Hora_fin_trabajo = hora_fin_trabajo;
     }
 
-    public String getCalificacion_promedio() {
+    public Integer getCalificacion_promedio() {
         return Calificacion_promedio;
     }
 
-    public void setCalificacion_promedio(String calificacion_promedio) {
+    public void setCalificacion_promedio(Integer calificacion_promedio) {
         Calificacion_promedio = calificacion_promedio;
     }
 
