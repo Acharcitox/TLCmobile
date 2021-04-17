@@ -3,32 +3,24 @@ package com.acharcitox.telocuido;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentSender;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ListView;
+
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.acharcitox.telocuido.Pojo.operadoresPojo;
-import com.google.android.gms.common.api.GoogleApiClient;
+
+import com.acharcitox.telocuido.model.Operadores;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -43,7 +35,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -54,42 +45,32 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
-import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
-import com.google.android.material.navigation.NavigationView;
 
 
 
-
-
-
-import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback,
         GoogleMap.OnMarkerClickListener {
 
-    private static final int AUTOCOMPLETE_REQUEST_CODE = 101;
     private GoogleMap mMap;
 
-    // variables para marcar operadores en mapa
-    private ArrayList<Marker> tmpRealTimeMarkers = new ArrayList<>();
+    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento
+    private ArrayList<Marker> tmpRealTimeMarker = new ArrayList<>();
+    //Para borrar los puntos anteriores y cargar los nuevos
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
-    private DatabaseReference mDatabase;
-    private Marker marker;
-    private DataSnapshot dataSnapshot;
 
+    //Variable para la bd
+    private DatabaseReference mRootReference;
 
     FusedLocationProviderClient fusedLocationProviderClient;
 
@@ -121,23 +102,13 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapView = mapFragment.getView();
 
         // Esto para traer los datos de los operadores de firebase
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        mRootReference = FirebaseDatabase.getInstance().getReference();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(MapsActivity.this);
 
         setAutoCompleteFragment();
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -150,25 +121,35 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // inicializa los marcadores
 
-        mDatabase.child("Operadores").addValueEventListener(new ValueEventListener() {
+        mRootReference.child("Operadores").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // hacemos una ciclo for por todos los operadores guardados
-                for (Marker marker : realTimeMarkers) {
+            public void onDataChange(@NonNull DataSnapshot datasnapshot) {
+                //Recorro la variable y borro todas las marcas que estan guardadas.
+                for (Marker marker:realTimeMarkers){
                     marker.remove();
                 }
-                // guardamos los marcaddores en tmprealtimemarkers
-                for (DataSnapshot s : dataSnapshot.getChildren()) {
-                    operadoresPojo operadores = s.getValue(operadoresPojo.class);
-                    float latitud = operadores.getLatitud();
-                    float longitud = operadores.getLongitude();
+                //Hacemos un FOR para recorrer los datos de latitud y longitud de cada Operador
+                for(DataSnapshot operadores : datasnapshot.getChildren()){
+                    //Inicializo el model Operadores
+                    Operadores operador = operadores.getValue(Operadores.class);
+                    //TRaigo la latitud y longitud de cada operador
+                    Float latitud = operador.getLatitud();
+                    Float longitud = operador.getLongitud();
                     MarkerOptions markerOptions = new MarkerOptions();
-                    markerOptions.position(new LatLng(latitud, longitud));
-                    tmpRealTimeMarkers.add(mMap.addMarker(markerOptions));
+                    //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
+                    //Decido pasarle la posicion
+                    markerOptions.position(new LatLng(latitud,longitud));
+
+                    //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
+                    tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
+
                 }
 
+                //Borro marcas guardadas
                 realTimeMarkers.clear();
-                realTimeMarkers.addAll(tmpRealTimeMarkers);// borramos los marcadores para que no se amontonen
+                //Guardo todas las marcas del for en la variable que esta limpia
+                realTimeMarkers.addAll(tmpRealTimeMarker);
+
             }
 
             @Override
@@ -243,7 +224,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 }
             }
         });
-
 
     }
 

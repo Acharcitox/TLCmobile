@@ -16,6 +16,7 @@
     <string name="menu_help">Ayuda</string>
     <string name="menu_exit">Salir</string>
     <string name="menu_group">Group</string>
-    <string name="api_key">AIzaSyAL6XicOtTc11t57gRpT5PbhjfyaWHcxsQ</string>
+    <string name="api_key">AIzaSyCIZPlsgDR_YTL4gQpHMefJppVAU2bT65s</string>
     <string name="sv_buscar">¿Dónde quieres ir?</string>
+    <string name="title_activity_maps2">Map</string>
 </resources>
