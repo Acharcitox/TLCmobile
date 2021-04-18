@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="#CCE2EC"
+    android:background="@color/fondo"
     tools:context=".DenunciarActivity">
 
 

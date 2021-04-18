@@ -10,4 +10,5 @@
     <color name="button">#0E4DA4</color>
     <color name="colorPrimary">#0E4DA4</color>
     <color name="colorPrimaryDark">#F9DC23</color>
+    <color name="fondo">#CCE2EC</color>
 </resources>
