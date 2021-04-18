@@ -1,30 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="#CCE2EC"
     tools:context=".DarPropinaActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvPropina"
-        android:text="¿Desea darle propina al Operador?">
-    </TextView>
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/eTMonto"
-        android:inputType="number">
-    </EditText>
 
     <Button
+        android:id="@+id/btnDarPropina"
+        android:layout_width="209dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="184dp"
+        android:layout_marginLeft="184dp"
+        android:text="PAGAR"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="446dp"
+        android:background="@drawable/botones" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:background="@drawable/corners"
+        android:shadowColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <TextView
+        android:id="@+id/tvPropina"
+        android:layout_width="263dp"
+        android:layout_height="28dp"
+        android:text="¿Desea darle propina al Operador?"
+        android:textColor="@color/colorPrimary"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="89dp"
+        tools:ignore="MissingConstraints" />
+
+    <EditText
+        android:id="@+id/eTMonto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Dar Propina"
-        android:id="@+id/btnDarPropina"/>
+        android:inputType="number"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="598dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn20"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
+        android:text="20"
+        tools:layout_editor_absoluteX="45dp"
+        tools:layout_editor_absoluteY="216dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn40"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
+        android:text="40"
+        tools:layout_editor_absoluteX="163dp"
+        tools:layout_editor_absoluteY="216dp"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn60"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
+        android:text="60"
+        tools:layout_editor_absoluteX="279dp"
+        tools:layout_editor_absoluteY="216dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/txtotromonto"
+        android:layout_width="311dp"
+        android:layout_height="60dp"
+        android:background="@drawable/cornertext"
+        android:gravity="center"
+        android:text="INGRESAR OTRO MONTO"
+        android:textAlignment="center"
+        tools:layout_editor_absoluteX="52dp"
+        tools:layout_editor_absoluteY="335dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/nombeusr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedro,"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="33dp"
+        tools:ignore="MissingConstraints" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
