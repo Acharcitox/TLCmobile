@@ -1,21 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LiberarLugarActivity"
-    android:orientation="vertical">
+    android:background="#CCE2EC"
+    android:orientation="vertical"
+
+    tools:context=".LiberarLugarActivity">
+
+    <Button
+        android:id="@+id/btnLiberarLugar"
+        android:layout_width="313dp"
+        android:layout_height="36dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginLeft="48dp"
+        android:background="@drawable/botones"
+        android:gravity="center_horizontal"
+        android:text="@string/liberar"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="172dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:background="@drawable/corners"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="3dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="¿Desea liberar el lugar?">
-    </TextView>
+        android:text="@string/desea_liberar_el_lugar"
+        android:textColor="@color/colorPrimary"
+        android:textSize="14sp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
 
-    <Button
+        tools:layout_editor_absoluteY="104dp"></TextView>
+
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/promos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Liberar"
-        android:id="@+id/btnLiberarLugar"/>
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="center"
 
-</LinearLayout>
+        android:src="@mipmap/ic_promopraga"
+        tools:layout_editor_absoluteX="27dp"
+        tools:layout_editor_absoluteY="3dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PRAGA Restaurant Café .Plaza Independencia 1358."
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="602dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
