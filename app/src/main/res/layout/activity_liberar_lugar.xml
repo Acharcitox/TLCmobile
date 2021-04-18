@@ -50,7 +50,7 @@
         android:adjustViewBounds="true"
         android:scaleType="center"
 
-        android:src="@mipmap/ic_promopraga"
+
         tools:layout_editor_absoluteX="27dp"
         tools:layout_editor_absoluteY="3dp" />
 
