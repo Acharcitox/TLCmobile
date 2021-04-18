@@ -19,6 +19,7 @@
         android:gravity="center_horizontal"
         android:text="@string/liberar"
         app:layout_constraintStart_toStartOf="parent"
+        app:rippleColor="@color/quantum_googgreen800"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="172dp" />
 
@@ -31,28 +32,32 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteY="3dp" />
 
+
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="318dp"
+        android:layout_height="27dp"
         android:text="@string/desea_liberar_el_lugar"
         android:textColor="@color/colorPrimary"
         android:textSize="14sp"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteX="19dp"
 
-        tools:layout_editor_absoluteY="104dp"></TextView>
-
+        tools:layout_editor_absoluteY="83dp" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/promos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="211dp"
+        android:layout_height="162dp"
         android:adjustViewBounds="true"
         android:scaleType="center"
+        android:src="@drawable/promopraga"
 
 
-        tools:layout_editor_absoluteX="27dp"
-        tools:layout_editor_absoluteY="3dp" />
+        app:shapeAppearanceOverlay="@style/bordercurved"
+        app:strokeColor="@color/teal_700"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="85dp"
+        tools:layout_editor_absoluteY="329dp" />
 
     <TextView
         android:id="@+id/textView5"
@@ -62,5 +67,16 @@
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
         tools:layout_editor_absoluteY="602dp" />
+
+    <TextView
+        android:id="@+id/nombeusr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedro,"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="19dp"
+        tools:layout_editor_absoluteY="33dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

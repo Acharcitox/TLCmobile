@@ -28,4 +28,8 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+    <style name="bordercurved" parent="">
+        <item name="cornerSize">10%</item>
+    </style>
+
 </resources>
