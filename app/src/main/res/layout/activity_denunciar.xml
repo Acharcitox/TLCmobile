@@ -10,7 +10,6 @@
 
     <TextView
         android:id="@+id/textView4"
-        app:layout_constraintStart_toStartOf="parent"
         android:layout_width="413dp"
         android:layout_height="187dp"
         android:background="@drawable/corners"
@@ -38,7 +37,8 @@
         android:layout_height="33dp"
         android:text="¿Desea Realizar una denuncia?"
         tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="80dp"></TextView>
+        tools:layout_editor_absoluteY="80dp"
+        tools:ignore="MissingConstraints"></TextView>
 
     <EditText
         android:id="@+id/eTTipo_Denuncia"
@@ -46,7 +46,8 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="670dp"></EditText>
+        tools:layout_editor_absoluteY="670dp"
+        tools:ignore="MissingConstraints"></EditText>
 
     <EditText
         android:id="@+id/eTDenuncia"
@@ -54,7 +55,8 @@
         android:layout_height="wrap_content"
         android:inputType="text"
         tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="635dp"></EditText>
+        tools:layout_editor_absoluteY="635dp"
+        tools:ignore="MissingConstraints"></EditText>
 
     <Button
         android:id="@+id/btnDenunciar"
@@ -62,7 +64,8 @@
         android:layout_height="53dp"
         android:text="Enviar Denuncia"
         tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="488dp" />
+        tools:layout_editor_absoluteY="488dp"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnOmitir"
@@ -70,7 +73,8 @@
         android:layout_height="48dp"
         android:text="Omitir"
         tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="571dp" />
+        tools:layout_editor_absoluteY="571dp"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
