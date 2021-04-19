@@ -5,10 +5,12 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
 
+import com.acharcitox.telocuido.model.Comercios;
 import com.acharcitox.telocuido.model.Operadores;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -28,11 +30,15 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     //Variable para la bd
     private DatabaseReference mRootReference;
 
-    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento
+    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento, Operadores
     private ArrayList<Marker> tmpRealTimeMarker = new ArrayList<>();
-    //Para borrar los puntos anteriores y cargar los nuevos
+    //Para borrar los puntos anteriores y cargar los nuevos, Operadores
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
 
+    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento, Comercios
+    private ArrayList<Marker> tmpRealTimeMarkerComercios = new ArrayList<>();
+    //Para borrar los puntos anteriores y cargar los nuevos, Comercios
+    private ArrayList<Marker> realTimeMarkersComercios = new ArrayList<>();
 
 
 // DATOS PARA CARGAR EL MAPA
@@ -68,13 +74,30 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                     //TRaigo la latitud y longitud de cada operador
                     Float latitud = operador.getLatitud();
                     Float longitud = operador.getLongitud();
+                    String nombre = operador.getNombre();
+                    String hora_inicio = operador.getHora_inicio_trabajo();
+                    String hora_fin = operador.getHora_fin_trabajo();
+                    String tipo_operador = operador.getTipo_operador();
+                    Integer calificacion = operador.getCalificacion_promedio();
+                    Integer cantidadLugares = operador.getCantidad_restante_lugares();
                     MarkerOptions markerOptions = new MarkerOptions();
                     //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
-                    //Decido pasarle la posicion
-                    markerOptions.position(new LatLng(latitud,longitud));
+                    //Decido pasarle la posicion, el titulo y mas datos dependiendo si es cuidacoches o un estacionamiento.
+                    if(tipo_operador.equals("Cuidacoches")){
+                        markerOptions.position(new LatLng(latitud,longitud))
+                                .title(nombre+"Calificacion: "+calificacion)
+                                .snippet("Lugares Disponibles: "+cantidadLugares + "Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                    } else {
+                        markerOptions.position(new LatLng(latitud,longitud))
+                                .title(nombre)
+                                .snippet("Lugares Disponibles: "+cantidadLugares+"/N "+ "Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    }
 
                     //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
                     tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
+
 
                 }
 
@@ -91,6 +114,53 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
 
             }
         });
+
+        mRootReference.child("Comercios").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Recorro la variable y borro todas las marcas que estan guardadas.
+                for (Marker marker:realTimeMarkersComercios){
+                    marker.remove();
+                }
+                //Hacemos un FOR para recorrer los datos de latitud y longitud de cada Comercio
+                for(DataSnapshot comercios : snapshot.getChildren()){
+                    //Inicializo el model Operadores
+                    Comercios comercio = comercios.getValue(Comercios.class);
+                    //TRaigo la latitud y longitud de cada operador
+                    Float latitud = comercio.getLatitud();
+                    Float longitud = comercio.getLongitud();
+                    String nombre = comercio.getNombre();
+                    String rubro = comercio.getRubro();
+                    String descripcion = comercio.getDescripcion();
+                    MarkerOptions markerOptions = new MarkerOptions();
+                    //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
+                    //Decido pasarle la posicion
+                    markerOptions.position(new LatLng(latitud,longitud))
+                            .title(nombre+" "+rubro)
+                            .snippet(descripcion)
+                            .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+
+                    //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
+                    tmpRealTimeMarkerComercios.add(mMap.addMarker(markerOptions));
+
+                }
+
+                //Borro marcas guardadas
+                realTimeMarkersComercios.clear();
+                //Guardo todas las marcas del for en la variable que esta limpia
+                realTimeMarkersComercios.addAll(tmpRealTimeMarkerComercios);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         // Add a marker in Sydney and move the camera
       //  LatLng sydney = new LatLng(-34, 151);

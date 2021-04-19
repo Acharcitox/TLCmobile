@@ -19,4 +19,11 @@
     <string name="api_key">AIzaSyCIZPlsgDR_YTL4gQpHMefJppVAU2bT65s</string>
     <string name="sv_buscar">¿Dónde quieres ir?</string>
     <string name="title_activity_maps2">Map</string>
+    <string name="register_nombre">Nombre</string>
+    <string name="register_apellido">Apellido</string>
+    <string name="register_celular">Celular</string>
+    <string name="register_Email">Email</string>
+    <string name="register_contrasena">Contraseña</string>
+    <string name="register_contrasena2">Confirmar Contraseña</string>
+    <string name="register_btnEnviarDatos">Enviar Datos</string>
 </resources>

@@ -3,9 +3,12 @@ package com.acharcitox.telocuido;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,13 +52,16 @@ public class MainActivity extends AppCompatActivity {
             String editTcorreo = eTcorreo.getText().toString();
             String editTcontrasena = eTcontrasena.getText().toString();
 
+            //Cierro el teclado
+            cerrarTeclado();
+
             //Limpio los textbox
             limpiarCajas();
             if (editTcorreo.equals("") || editTcontrasena.equals("")) {
                 validacion();
             } else {
 
-                //Poner variable en String para pasarla la consulta
+                //Poner variable en String para pasar la consulta
                 Query q = refDatos.child("Conductores").orderByChild("Mail").equalTo(editTcorreo);
                 q.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -70,19 +76,14 @@ public class MainActivity extends AppCompatActivity {
                                 String apellido = conductorSeleccionado.getApellido();
                                 String id_conductor = conductorSeleccionado.getId_conductor();
 
-                                //Traigo los datos que necesito del conductor.
-                                //String passw = conductor.child("Password").getValue(String.class);
-                                //String nombre = conductor.child("Nombre").getValue(String.class);
-                                //String apellido = conductor.child("Apellido").getValue(String.class);
-                                //String id_conductor = conductor.getKey();
 
-  //Utilizo el if para verficar si la contraseña ingresada es correcta
+                                //Utilizo el if para verficar si la contraseña ingresada es correcta
                                 if (passw.equals(editTcontrasena)) {
                                     textVId_con.setText("Bienvenido a la mejor aplicacion!");
 
                                     //Paso los datos a la nueva activity, deberia ser el mapa
                                     Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                                   // i.putExtra("nombre_conductor", nombre);
+                                  //  i.putExtra("nombre_conductor", nombre);
                                   //  i.putExtra("apellido_conductor", apellido);
                                   //  i.putExtra("id_conductor_conductor", id_conductor);
                                     startActivity(i);
@@ -91,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                                     limpiarCajas();
                                     textVId_con.setText("Usuario o contraseña incorrecta, intente nuevamente");
                                 }
-
 
                             }
                         }
@@ -135,6 +135,16 @@ public class MainActivity extends AppCompatActivity {
         eTcorreo.setText("");
         eTcontrasena.setText("");
         textVId_con.setText("");
+    }
+
+    //MEtodo para cerrar el teclado lugo que hagan click en iniciar sesion
+    public void cerrarTeclado(){
+        View view = this.getCurrentFocus();
+        if(view!= null){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
+
     }
 
 }
