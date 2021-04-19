@@ -26,4 +26,6 @@
     <string name="register_contrasena">Contraseña</string>
     <string name="register_contrasena2">Confirmar Contraseña</string>
     <string name="register_btnEnviarDatos">Enviar Datos</string>
+    <string name="liberar">Liberar Lugar</string>
+    <string name="desea_liberar_el_lugar">"quieres liberar el lugar? "</string>
 </resources>
