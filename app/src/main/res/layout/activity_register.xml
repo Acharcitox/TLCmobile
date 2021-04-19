@@ -27,19 +27,11 @@
 
 
         <EditText
-            android:id="@+id/eTUsuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Nombre de Usuario"
-            android:inputType="textPersonName" />
-
-        <EditText
             android:id="@+id/eTNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Nombre"
+            android:hint="@string/register_nombre"
             android:inputType="textPersonName" />
 
         <EditText
@@ -47,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Apellido"
+            android:hint="@string/register_apellido"
             android:inputType="textPersonName" />
 
         <EditText
@@ -55,7 +47,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Celular"
+            android:hint="@string/register_celular"
             android:inputType="text|phone" />
 
         <EditText
@@ -63,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/register_Email"
             android:inputType="textEmailAddress" />
 
         <EditText
@@ -71,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Contraseña"
+            android:hint="@string/register_contrasena"
             android:inputType="textPassword" />
 
         <EditText
@@ -79,16 +71,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:hint="Confirmar Contraseña"
+            android:hint="@string/register_contrasena2"
             android:inputType="textPassword" />
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Enviar Datos"
+            android:text="@string/register_btnEnviarDatos"
             android:backgroundTint="@color/colorPrimary"
             android:id="@+id/btnCrearUsuario"/>
+
+        <TextView
+            android:id="@+id/tVmensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10" />
 
 
     </LinearLayout>
