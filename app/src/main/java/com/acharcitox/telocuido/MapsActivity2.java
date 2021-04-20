@@ -3,6 +3,7 @@ package com.acharcitox.telocuido;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.acharcitox.telocuido.model.Comercios;
@@ -22,7 +23,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallback,
+        GoogleMap.OnMarkerClickListener{
 
     // ES un MAPA PARA PROBAR, luego debemos eliminarlo.
 
@@ -59,6 +61,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        mMap.getUiSettings().setZoomControlsEnabled(true);
 
         mRootReference.child("Operadores").addValueEventListener(new ValueEventListener() {
             @Override
@@ -84,6 +87,7 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                     //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
                     //Decido pasarle la posicion, el titulo y mas datos dependiendo si es cuidacoches o un estacionamiento.
                     if(tipo_operador.equals("Cuidacoches")){
+
                         markerOptions.position(new LatLng(latitud,longitud))
                                 .title(nombre+"Calificacion: "+calificacion)
                                 .snippet("Lugares Disponibles: "+cantidadLugares + "Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
@@ -95,11 +99,25 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                     }
 
+
                     //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
                     tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
 
-
                 }
+
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+
+                        Intent i = new Intent(MapsActivity2.this, OverlayOperador.class);
+                        // pasamos los datos de operador a un nuevo intent-
+
+                        startActivity(i);
+
+                        return false;
+                    }
+                });
+
 
                 //Borro marcas guardadas
                 realTimeMarkers.clear();
@@ -166,5 +184,10 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
       //  LatLng sydney = new LatLng(-34, 151);
       //  mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
       //  mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
     }
 }

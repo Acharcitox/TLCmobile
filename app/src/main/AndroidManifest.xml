@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TeLoCuido">
-
+        <activity android:name=".OverlayOperador"></activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -29,7 +29,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
-
         <activity android:name=".PermisosActivity" />
         <activity android:name=".OnboardActivity">
             <intent-filter>
@@ -41,16 +40,19 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".RegisterActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".RegisterActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ElegirLugarActivity" />
         <activity android:name=".CalificarActivity" />
         <activity android:name=".DarPropinaActivity" />
         <activity android:name=".LiberarLugarActivity" />
         <activity android:name=".DenunciarActivity" />
-        <activity android:name=".MapsActivity2"
-            android:label="@string/title_activity_maps2"/>
-        <activity android:name=".MainActivity"/>
+        <activity
+            android:name=".MapsActivity2"
+            android:label="@string/title_activity_maps2" />
+        <activity android:name=".MainActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

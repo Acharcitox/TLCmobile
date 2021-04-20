@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     EditText eTcontrasena, eTcorreo;
     TextView textVId_con;
 
+    Button irMapa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
         eTcorreo = findViewById(R.id.eTcorreoLogin);
         eTcontrasena = findViewById(R.id.eTcontrasenaLogin);
         textVId_con = findViewById(R.id.tvId_con);
+
+        irMapa = findViewById(R.id.btnIrMapa);
 
 
         // Genero el evento al hacer click en el boton iniciar sesion
@@ -145,6 +149,11 @@ public class MainActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
 
+    }
+
+    public void irMapa (View v) {
+        Intent i = new Intent(this, MapsActivity2.class);
+        startActivity(i);
     }
 
 }

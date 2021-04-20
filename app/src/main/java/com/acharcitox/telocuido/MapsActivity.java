@@ -145,6 +145,19 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                 }
 
+                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+
+                        Intent i = new Intent(MapsActivity.this, OverlayOperador.class);
+                        // pasamos los datos de operador a un nuevo intent-
+
+                        startActivity(i);
+
+                        return false;
+                    }
+                });
+
                 //Borro marcas guardadas
                 realTimeMarkers.clear();
                 //Guardo todas las marcas del for en la variable que esta limpia
