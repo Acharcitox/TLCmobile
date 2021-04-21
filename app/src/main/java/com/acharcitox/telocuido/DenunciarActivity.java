@@ -64,7 +64,7 @@ public class DenunciarActivity extends AppCompatActivity implements View.OnClick
         hopperRef.updateChildren(hopperUpdates);
 
         //Muestro carte de agregado.
-        Toast.makeText(this, "Se califico correctamente.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Se ingreso la denuncia correctamente.", Toast.LENGTH_LONG).show();
 
         //Envio los datos de la transaccion a la proxima activity
         Intent i = new Intent(this, MainActivity.class);

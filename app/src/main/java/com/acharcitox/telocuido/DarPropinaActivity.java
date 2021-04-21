@@ -52,30 +52,45 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
 
-        // Tomo los nuevos datos de los campos de texto de esta activity
-        int Monto_propina = Integer.parseInt(editTextMonto.getText().toString());
-        String Fecha_hora_propina = dateFormat.format(date);
 
-        //Se referencia la base y nos ubicamos en el lugar correspondiente para insertar los nuevos campos.
-        DatabaseReference ref = firebaseDatabase.getReference();
-        DatabaseReference ocupaRef = ref.child("Ocupar_lugar");
-        DatabaseReference hopperRef = ocupaRef.child(Id_transaccion);
 
-        // Inserto los nuevos campos en la transaccion indicada.
-        Map<String, Object> hopperUpdates = new HashMap<>();
-        hopperUpdates.put("Monto_propina",(Monto_propina));
-        hopperUpdates.put("Fecha_hora_propina",(Fecha_hora_propina));
+//arreglar el if para que valide bien
+        if(editTextMonto.getText().toString().isEmpty()){
+            //Muestro carte de agregado.
+            Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
 
-        //Con esto agrego los nuevos campos.
-        hopperRef.updateChildren(hopperUpdates);
+            //Lo mando al Mapa nuevamente
+            Intent i = new Intent(this, DenunciarActivity.class);
+            i.putExtra("id_transaccion", Id_transaccion);
+            startActivity(i);
 
-        //Muestro carte de agregado.
-        Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
+        } else {
 
-        //Lo mando al Mapa nuevamente
-        Intent i = new Intent(this, DenunciarActivity.class);
-        i.putExtra("id_transaccion", Id_transaccion);
-        startActivity(i);
+            // Tomo los nuevos datos de los campos de texto de esta activity
+            int Monto_propina = Integer.parseInt(editTextMonto.getText().toString());
+            String Fecha_hora_propina = dateFormat.format(date);
+
+            //Se referencia la base y nos ubicamos en el lugar correspondiente para insertar los nuevos campos.
+            DatabaseReference ref = firebaseDatabase.getReference();
+            DatabaseReference ocupaRef = ref.child("Ocupar_lugar");
+            DatabaseReference hopperRef = ocupaRef.child(Id_transaccion);
+
+            // Inserto los nuevos campos en la transaccion indicada.
+            Map<String, Object> hopperUpdates = new HashMap<>();
+            hopperUpdates.put("Monto_propina",(Monto_propina));
+            hopperUpdates.put("Fecha_hora_propina",(Fecha_hora_propina));
+
+            //Con esto agrego los nuevos campos.
+            hopperRef.updateChildren(hopperUpdates);
+
+            //Muestro carte de agregado.
+            Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
+
+            //Lo mando al Mapa nuevamente
+            Intent i = new Intent(this, DenunciarActivity.class);
+            i.putExtra("id_transaccion", Id_transaccion);
+            startActivity(i);
+        }
 
     }
 

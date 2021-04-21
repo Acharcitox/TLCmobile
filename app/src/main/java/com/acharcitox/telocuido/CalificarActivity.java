@@ -69,30 +69,41 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
 
-        // Tomo los nuevos datos de los campos de texto de esta activity
-        int Calificacion = Integer.parseInt(editTextCalificacion.getText().toString());
-        String Comentario = editTextComentario.getText().toString();
 
-        //Se referencia la base y nos ubicamos en el lugar correspondiente para insertar los nuevos campos.
-        DatabaseReference ref = firebaseDatabase.getReference();
-        DatabaseReference ocupaRef = ref.child("Ocupar_lugar");
-        DatabaseReference hopperRef = ocupaRef.child(Id_transaccion);
 
-        // Inserto los nuevos campos en la transaccion indicada.
-        Map<String, Object> hopperUpdates = new HashMap<>();
-        hopperUpdates.put("calificacion",(Calificacion));
-        hopperUpdates.put("comentario",(Comentario));
+        //arreglar el if para que valide bien
+        if(editTextCalificacion.getText().toString().isEmpty()){
 
-        //Con esto agrego los nuevos campos.
-        hopperRef.updateChildren(hopperUpdates);
+            //Muestro carte de agregado.
+            Toast.makeText(this, "Debe ingresar una calificación para continuar.", Toast.LENGTH_LONG).show();
 
-        //Muestro carte de agregado.
-        Toast.makeText(this, "Se califico correctamente.", Toast.LENGTH_LONG).show();
+        } else{
 
-        //Envio los datos de la transaccion a la proxima activity
-        Intent i = new Intent(this, DarPropinaActivity.class);
-        i.putExtra("id_transaccion", Id_transaccion);
-        startActivity(i);
+            // Tomo los nuevos datos de los campos de texto de esta activity
+            int Calificacion = Integer.parseInt(editTextCalificacion.getText().toString());
+            String Comentario = editTextComentario.getText().toString();
+
+            //Se referencia la base y nos ubicamos en el lugar correspondiente para insertar los nuevos campos.
+            DatabaseReference ref = firebaseDatabase.getReference();
+            DatabaseReference ocupaRef = ref.child("Ocupar_lugar");
+            DatabaseReference hopperRef = ocupaRef.child(Id_transaccion);
+
+            // Inserto los nuevos campos en la transaccion indicada.
+            Map<String, Object> hopperUpdates = new HashMap<>();
+            hopperUpdates.put("calificacion",(Calificacion));
+            hopperUpdates.put("comentario",(Comentario));
+
+            //Con esto agrego los nuevos campos.
+            hopperRef.updateChildren(hopperUpdates);
+
+            //Muestro carte de agregado.
+            Toast.makeText(this, "Se califico correctamente.", Toast.LENGTH_LONG).show();
+
+            //Envio los datos de la transaccion a la proxima activity
+            Intent i = new Intent(this, DarPropinaActivity.class);
+            i.putExtra("id_transaccion", Id_transaccion);
+            startActivity(i);
+        }
 
     }
 }

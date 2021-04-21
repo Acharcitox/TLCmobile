@@ -53,13 +53,13 @@ public class ElegirLugarActivity extends AppCompatActivity implements View.OnCli
         Bundle extras = getIntent().getExtras();
         //String nombre_conductor = extras.getString("nombre_conductor");
         //String apellido_conductor = extras.getString("apellido_conductor");
-        String id_conductor_conductor = extras.getString("id_conductor_conductor");
+        //String id_conductor_conductor = extras.getString("id_conductor_conductor");
 
         //Vinculo las variables creadas con los campos de la base de datos.
         String Id_transaccion = UUID.randomUUID().toString();
-        String id_conductor = id_conductor_conductor;
+        String id_conductor = "5000";
         int CI_operador = 10000;
-        String Id_lugar_asignado = "50000";
+        int Id_lugar_asignado = 50000;
         Boolean Esta_libre = false;
 
         //Ver como hacer que el dato sea fecha
