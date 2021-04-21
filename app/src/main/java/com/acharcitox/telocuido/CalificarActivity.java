@@ -1,11 +1,13 @@
 package com.acharcitox.telocuido;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -27,6 +29,7 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
 
     //Variable que se va utilizar para subir los datos a firebase
     Button mButtonSubirDatosFirebase, mButtonomitir;
+    RatingBar ratingstar;
 
 
     @Override
@@ -37,12 +40,24 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
         //Se vincula boton de la activity con la variable creada aqui
         mButtonSubirDatosFirebase = findViewById(R.id.btnCalificar);
         mButtonSubirDatosFirebase.setOnClickListener(this);
+        //para cargar variable con valor de las estrellas
+        ratingstar = findViewById(R.id.ratingoperator);
+
+        ratingstar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b){
+                // Cargar variable para firebase aqui
+            }
+        });
+
+
 
         editTextCalificacion = findViewById(R.id.eTCalificacion);
         editTextComentario = findViewById(R.id.eTComentario);
 
         //Ver a donde salir con este boton
         mButtonomitir = findViewById(R.id.btnOmitir);
+
 
     }
 
