@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.acharcitox.telocuido.model.Comercios;
 import com.acharcitox.telocuido.model.Operadores;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
@@ -92,6 +93,9 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                                 .title(nombre+"Calificacion: "+calificacion)
                                 .snippet("Lugares Disponibles: "+cantidadLugares + "Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud, longitud), 17));
+
                     } else {
                         markerOptions.position(new LatLng(latitud,longitud))
                                 .title(nombre)
@@ -99,6 +103,51 @@ public class MapsActivity2 extends FragmentActivity implements OnMapReadyCallbac
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                     }
 
+                    if (cantidadLugares.equals(1) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_1));
+                    }
+                    if (cantidadLugares.equals(2) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_2));
+                    }
+                    if (cantidadLugares.equals(3) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_3));
+                    }
+                    if (cantidadLugares.equals(4) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_4));
+                    }
+                    if (cantidadLugares.equals(5) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_5));
+                    }
+                    if (cantidadLugares.equals(6) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_6));
+                    }
+                    if (cantidadLugares.equals(7) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_7));
+                    }
+                    if (cantidadLugares.equals(8) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_8));
+                    }
+                    if (cantidadLugares.equals(9) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_9));
+                    }
+                    if (cantidadLugares.equals(10) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_10));
+                    }
+                    if (cantidadLugares.equals(11) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_11));
+                    }
+                    if (cantidadLugares.equals(12) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_12));
+                    }
+                    if (cantidadLugares.equals(13) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_13));
+                    }
+                    if (cantidadLugares.equals(14) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_14));
+                    }
+                    if (cantidadLugares.equals(15) && tipo_operador.equals("Cuidacoches")) {
+                        markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_15));
+                    }
 
                     //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
                     tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
