@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="border_curved1" parent="">
         <item name="cornerSize">10%</item>
     </style>
+
+
+
 
 </resources>
 

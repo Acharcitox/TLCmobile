@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity {
         irMapa = findViewById(R.id.btnIrMapa);
 
 
+
         // Genero el evento al hacer click en el boton iniciar sesion
         mButtonLoginFirebase.setOnClickListener(v -> {
             //Transformo los datos ingresados en variables string

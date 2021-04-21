@@ -1,37 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
+    android:background="@color/fondo"
     tools:context=".CalificarActivity">
+    <TextView
+        android:id="@+id/textViewsup"
+        android:layout_width="match_parent"
+        android:layout_height="248dp"
+        android:background="@drawable/corners"
+        android:shadowColor="@color/black"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="3dp" />
+
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/tv_propina"
-        android:text="¿Que calificacion le pondrias al operador?">
-    </TextView>
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="¿Que calificacion le pondrias al operador?"
+        android:textColor="@color/colorPrimary"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="148dp" />
+
+    <EditText
         android:id="@+id/eTCalificacion"
-        android:inputType="number">
-    </EditText>
-
-    <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="number"
+        tools:layout_editor_absoluteX="36dp"
+        tools:layout_editor_absoluteY="540dp"
+        tools:ignore="MissingConstraints"></EditText>
+
+    <EditText
         android:id="@+id/eTComentario"
-        android:inputType="text">
-    </EditText>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="585dp"
+        tools:ignore="MissingConstraints"></EditText>
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/btnCalificar"
+        android:layout_width="270dp"
+        android:layout_height="46dp"
         android:text="Enviar Calificación"
-        android:id="@+id/btnCalificar"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ratingoperator"
+        app:layout_constraintVertical_bias="0.223"
+        tools:ignore="MissingConstraints" />
+
+    <RatingBar
+        android:id="@+id/ratingoperator"
+        android:layout_width="283dp"
+        android:layout_height="62dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="341dp"
+        android:numStars="5"
+        android:stepSize="0.5"
+        android:rating="5"
+        android:progressTint="@color/quantum_yellow"
+        tools:ignore="MissingConstraints" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

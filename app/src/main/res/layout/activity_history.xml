@@ -11,5 +11,6 @@
         android:layout_height="wrap_content"
         android:text="Historial"
         tools:layout_editor_absoluteX="158dp"
-        tools:layout_editor_absoluteY="315dp" />
+        tools:layout_editor_absoluteY="315dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -77,6 +77,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="33dp" />
+        tools:layout_editor_absoluteY="33dp"
+        tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
