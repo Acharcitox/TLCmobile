@@ -12,6 +12,7 @@ import android.content.IntentSender;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +21,7 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
+import com.acharcitox.telocuido.model.Comercios;
 import com.acharcitox.telocuido.model.Operadores;
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.common.api.Status;
@@ -35,6 +37,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -64,10 +67,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
 
-    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento
+    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento, Operadores
     private ArrayList<Marker> tmpRealTimeMarker = new ArrayList<>();
-    //Para borrar los puntos anteriores y cargar los nuevos
+    //Para borrar los puntos anteriores y cargar los nuevos, Operadores
     private ArrayList<Marker> realTimeMarkers = new ArrayList<>();
+
+    //Creo un arraylist para almacenar los marcadores que voy a ver en el momento, Comercios
+    private ArrayList<Marker> tmpRealTimeMarkerComercios = new ArrayList<>();
+    //Para borrar los puntos anteriores y cargar los nuevos, Comercios
+    private ArrayList<Marker> realTimeMarkersComercios = new ArrayList<>();
 
     //Variable para la bd
     private DatabaseReference mRootReference;
@@ -86,6 +94,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private View mapView;
     private final float DEFAULT_ZOOM = 17;
 
+    //Para hacer doble click sobre las marcas
+    boolean doubleBackToExitPressedOnce = false;
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -93,7 +104,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -109,6 +120,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setAutoCompleteFragment();
     }
 
+
+
     @SuppressLint("MissingPermission")
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -119,8 +132,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.setTrafficEnabled(true);
 
-        // inicializa los marcadores
+        //Aca recibimos la id del conductor que ingreso
+        Bundle extras = getIntent().getExtras();
+        String id_conductorLogin = extras.getString("id_conductor_conductor");
 
+
+        //Para mostrar cuidacoches
         mRootReference.child("Operadores").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot datasnapshot) {
@@ -135,65 +152,109 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //TRaigo la latitud y longitud de cada operador
                     Float latitud = operador.getLatitud();
                     Float longitud = operador.getLongitud();
+                    String nombre = operador.getNombre();
+                    String tipo_operador = operador.getTipo_operador();
                     MarkerOptions markerOptions = new MarkerOptions();
+
+
                     //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
-                    //Decido pasarle la posicion
-                    markerOptions.position(new LatLng(latitud,longitud));
+                    //Decido pasarle la posicion, el titulo y mas datos dependiendo si es cuidacoches o un estacionamiento.
+                    if(tipo_operador.equals("Cuidacoches")){
+
+                        markerOptions.position(new LatLng(latitud,longitud))
+                                .title(nombre)
+                                .snippet("Doble click para elegir este lugar. " + "Es un " + tipo_operador )
+                                //.snippet(tipo_operador + " Calificacion: "+ calificacion + " Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+
+//ZOOM para probar y ver los puntos en el momento
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud, longitud), 17));
+
+                    } else {
+                        markerOptions.position(new LatLng(latitud,longitud))
+                                .title(nombre)
+                                .snippet("Doble click para elegir este lugar. " + "Es un " + tipo_operador )
+                                //.snippet(tipo_operador + " Lugares Disponibles: "+cantidadLugares+ " Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    }
 
                     //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
                     tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
 
+                    mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker) {
+                            //Para hacer doble click y elegir lugar.
+                            if (doubleBackToExitPressedOnce){
+                                Intent i = new Intent(MapsActivity.this, OverlayOperador.class);
+                                // pasamos los datos de operador a un nuevo intent-
+                                i.putExtra("ci_operador", marker.getTitle());
+                                i.putExtra("id_conductorMap", id_conductorLogin);
+                                startActivity(i);
+                            } else {
+                                doubleBackToExitPressedOnce = true;
+                                new Handler().postDelayed(() -> doubleBackToExitPressedOnce = false, 1000);
+                            }
+                            return false;
+                        }
+                    });
+
                 }
-
-                mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                    @Override
-                    public boolean onMarkerClick(Marker marker) {
-
-                        Intent i = new Intent(MapsActivity.this, OverlayOperador.class);
-                        // pasamos los datos de operador a un nuevo intent-
-
-                        startActivity(i);
-
-                        return false;
-                    }
-                });
-
                 //Borro marcas guardadas
                 realTimeMarkers.clear();
                 //Guardo todas las marcas del for en la variable que esta limpia
                 realTimeMarkers.addAll(tmpRealTimeMarker);
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
-        /*googleMap.setOnMarkerClickListener(this);
 
-        int height = 80;
-        int width = 80;
-        /*BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.icon_prueba_cuidacoches);
-        Bitmap b = bitmapDrawable.getBitmap();*/
-        /*final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);*/
-        /*mOperadores.addListenerForSingleValueEvent(new ValueEventListener() {
+        //Para mostrar los Comercios
+        mRootReference.child("Comercios").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot s : dataSnapshot.getChildren()) {
-                    operadoresPojo operadores = s.getValue(operadoresPojo.class);
-                    LatLng latLng = new LatLng(operadores.Latitud, operadores.Longitude);
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(operadores.Nombre)).setIcon(BitmapDescriptorFactory.defaultMarker());
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+                //Recorro la variable y borro todas las marcas que estan guardadas.
+                for (Marker marker1:realTimeMarkersComercios){
+                    marker1.remove();
                 }
-            }
+                //Hacemos un FOR para recorrer los datos de latitud y longitud de cada Comercio
+                for(DataSnapshot comercios : snapshot.getChildren()){
+                    if (snapshot.exists()){
+                        //Inicializo el model Operadores
+                        Comercios comercio = comercios.getValue(Comercios.class);
+                        //TRaigo la latitud y longitud de cada operador
+                        Float latitud = comercio.getLatitud();
+                        Float longitud = comercio.getLongitud();
+                        String nombre = comercio.getNombre();
+                        String rubro = comercio.getRubro();
+                        String descripcion = comercio.getDescripcion();
+                        MarkerOptions markerOptions = new MarkerOptions();
 
+                        //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
+                        //Decido pasarle la posicion
+                        markerOptions.position(new LatLng(latitud,longitud))
+                                .title(nombre+" "+rubro)
+                                .snippet(descripcion)
+                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+
+                        //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
+                        tmpRealTimeMarkerComercios.add(mMap.addMarker(markerOptions));
+                    }
+                }
+                //Borro marcas guardadas
+                realTimeMarkersComercios.clear();
+                //Guardo todas las marcas del for en la variable que esta limpia
+                realTimeMarkersComercios.addAll(tmpRealTimeMarkerComercios);
+            }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
-        });*/
+        });
+
+
 
 
         //acá movemos el botón de recuperación de ubicación de usuario para abajo y que no quede tapado por el SearchView
@@ -251,6 +312,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         }
     }
 
+
+
     //recupera la ubicación del usuario y maneja errores
     @SuppressLint("MissingPermission")
     private void getUserLocation() {
@@ -291,21 +354,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 });
     }
 
-    private void Cuidacoches(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        LatLng manolo = new LatLng(-34.906035, -56.20038);
-        LatLng pocho = new LatLng(-34.906031, -56.20094);
-        LatLng joselo = new LatLng(-34.90664, -56.19870);
 
-        //mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
-        mMap.addMarker(new MarkerOptions().position(manolo).title(" MANOLO "));
-        mMap.addMarker(new MarkerOptions().position(pocho).title("POCHO "));
-        mMap.addMarker(new MarkerOptions().position(joselo).title("JOSELO "));
 
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(montevideo));
-        /*mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(manolo, 16));*/
-    }
 
     //Maneja la api Places de google
     private void setAutoCompleteFragment () {

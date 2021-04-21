@@ -8,7 +8,7 @@ public class Ocupar_lugar {
     private String Id_transaccion;
     private String Id_conductor;
     private Integer CI_operador;
-    private String Id_lugar_asignado;
+    private Integer Id_lugar_asignado;
     private String Fecha_hora_inicio;
     private String Fecha_hora_fin;
     private Boolean Esta_libre;
@@ -40,11 +40,11 @@ public class Ocupar_lugar {
         Id_conductor = id_conductor;
     }
 
-    public String getId_lugar_asignado() {
+    public Integer getId_lugar_asignado() {
         return Id_lugar_asignado;
     }
 
-    public void setId_lugar_asignado(String id_lugar_asignado) {
+    public void setId_lugar_asignado(Integer id_lugar_asignado) {
         Id_lugar_asignado = id_lugar_asignado;
     }
 
