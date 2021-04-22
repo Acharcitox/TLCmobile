@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ public class LiberarLugarActivity extends AppCompatActivity implements View.OnCl
 
     //Variable que se va utilizar para subir los datos a firebase
     Button mButtonSubirDatosFirebase;
+    TextView edittext_nombreusuario;
 
     //Para dar formato a las fechas
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
@@ -35,10 +37,20 @@ public class LiberarLugarActivity extends AppCompatActivity implements View.OnCl
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liberar_lugar);
 
+        //Obtengo los datos de la activity anterios
+        Bundle extras = getIntent().getExtras();
+        String Nombre_conductor_liberar = extras.getString("nombre_conductor");
+
+
         //Se vincula boton de la activity con la variable creada aqui
         mButtonSubirDatosFirebase = findViewById(R.id.btnLiberarLugar);
+        edittext_nombreusuario = findViewById(R.id.etNombreUsuario);
+
+        edittext_nombreusuario.setText("Hola, "+ Nombre_conductor_liberar);
+
         mButtonSubirDatosFirebase.setOnClickListener(this);
     }
+
 
     @Override
     public void onClick(View v) {
