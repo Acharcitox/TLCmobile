@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                                 Conductores conductorSeleccionado = conductor.getValue(Conductores.class);
                                 String passw = conductorSeleccionado.getPassword();
                                 String nombre = conductorSeleccionado.getNombre();
-                                String apellido = conductorSeleccionado.getApellido();
+                               // String apellido = conductorSeleccionado.getApellido();
                                 String id_conductor = conductorSeleccionado.getId_conductor();
 
 
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     //Paso los datos a la nueva activity, deberia ser el mapa
                                     Intent i = new Intent(MainActivity.this, MapsActivity.class);
-                                    // i.putExtra("nombre_conductor", nombre);
+                                    i.putExtra("nombre_conductor", nombre);
                                   //  i.putExtra("apellido_conductor", apellido);
                                     i.putExtra("id_conductor_conductor", id_conductor);
                                     startActivity(i);

@@ -46,6 +46,7 @@ public class OverlayOperador extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         String dato = extras.getString("ci_operador");
         String id_conductorMap = extras.getString("id_conductorMap");
+        String nombre_conductor_over = extras.getString("Nombre_conductor_mapa");
 
         // Instanciamos
         tv_operador = findViewById(R.id.tvTipoOperador);
@@ -112,6 +113,8 @@ public class OverlayOperador extends AppCompatActivity {
                                 //Envio los datos de la transaccion a la proxima activity
                                 Intent i = new Intent(OverlayOperador.this, LiberarLugarActivity.class);
                                 i.putExtra("id_transaccion", Id_transaccion);
+                                i.putExtra("nombre_conductor", nombre_conductor_over);
+
                                 startActivity(i);
 
                             }
