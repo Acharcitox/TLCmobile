@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:background="@color/fondo"
+    android:orientation="vertical"
     tools:context=".CalificarActivity">
+
     <TextView
         android:id="@+id/textViewsup"
         android:layout_width="match_parent"
@@ -32,18 +33,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="540dp"
-        tools:ignore="MissingConstraints"></EditText>
+        tools:layout_editor_absoluteY="540dp"></EditText>
 
     <EditText
         android:id="@+id/eTComentario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="text"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="585dp"
-        tools:ignore="MissingConstraints"></EditText>
+        tools:layout_editor_absoluteY="585dp"></EditText>
 
     <Button
         android:id="@+id/btnCalificar"
@@ -60,15 +61,16 @@
 
     <RatingBar
         android:id="@+id/ratingoperator"
-        android:layout_width="283dp"
-        android:layout_height="62dp"
+        android:layout_width="297dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="316dp"
+        android:numStars="5"
+        android:progressTint="@color/quantum_yellow"
+        android:rating="5"
+        android:stepSize="0.5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="341dp"
-        android:numStars="5"
-        android:stepSize="0.5"
-        android:rating="5"
-        android:progressTint="@color/quantum_yellow"
+        app:layout_constraintTop_toTopOf="@+id/textViewsup"
         tools:ignore="MissingConstraints" />
 
 

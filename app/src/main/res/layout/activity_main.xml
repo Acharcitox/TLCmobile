@@ -25,16 +25,20 @@
     <LinearLayout
         android:layout_width="316dp"
         android:layout_height="579dp"
+        android:layout_alignStart="@+id/bienvenido"
+        android:layout_alignLeft="@+id/bienvenido"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="71dp"
+        android:layout_marginRight="71dp"
         android:gravity="center"
         android:orientation="vertical"
-        android:layout_alignStart="@+id/bienvenido"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.894"
-        android:layout_alignLeft="@+id/bienvenido">
+        app:layout_constraintVertical_bias="0.894">
 
         <EditText
             android:id="@+id/eTcorreoLogin"
@@ -54,36 +58,35 @@
 
         <Button
             android:id='@+id/btnLogin'
-            android:layout_marginTop="16dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:background="@drawable/button"
             android:text="@string/btnIniciarSesion"
             app:backgroundTint="@color/button" />
 
         <Button
-            android:layout_marginTop="6dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:background="@drawable/button"
             android:onClick="registrarUsuario"
             android:text="@string/btnResgistrarse"
             app:backgroundTint="@color/button" />
 
         <TextView
+            android:id="@+id/tvId_con"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/tvId_con"
-            android:text="">
-        </TextView>
+            android:text=""></TextView>
 
         <Button
+            android:id="@+id/btnIrMapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="ir al mapa"
             android:onClick="irMapa"
-            android:id="@+id/btnIrMapa"/>
+            android:text="ir al mapa" />
 
     </LinearLayout>
 

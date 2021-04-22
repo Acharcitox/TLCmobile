@@ -38,9 +38,11 @@
         android:layout_height="28dp"
         android:text="¿Desea darle propina al Operador?"
         android:textColor="@color/colorPrimary"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="89dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.128"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="91dp" />
 
     <EditText
         android:id="@+id/eTMonto"
@@ -58,10 +60,10 @@
         android:text="20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn40"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.282"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.331"
+        app:layout_constraintVertical_bias="0.33"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -79,11 +81,10 @@
         android:id="@+id/btn60"
         android:layout_width="85dp"
         android:layout_height="80dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
         android:text="60"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn40"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.331"
         tools:ignore="MissingConstraints" />
@@ -110,9 +111,10 @@
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="19dp"
-        tools:layout_editor_absoluteY="33dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/tvPropina"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="19dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
