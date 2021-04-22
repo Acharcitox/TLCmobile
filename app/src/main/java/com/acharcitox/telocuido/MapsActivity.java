@@ -135,6 +135,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         //Aca recibimos la id del conductor que ingreso
         Bundle extras = getIntent().getExtras();
         String id_conductorLogin = extras.getString("id_conductor_conductor");
+        String nombre_conductor_login = extras.getString("nombre_conductor");
 
 
         //Para mostrar cuidacoches
@@ -154,6 +155,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Float longitud = operador.getLongitud();
                     String nombre = operador.getNombre();
                     String tipo_operador = operador.getTipo_operador();
+                    Integer cantidadLugares = operador.getCantidad_restante_lugares();
                     MarkerOptions markerOptions = new MarkerOptions();
 
 
@@ -170,6 +172,52 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 //ZOOM para probar y ver los puntos en el momento
                         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitud, longitud), 17));
 
+                        if (cantidadLugares.equals(1)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_1));
+                        }
+                        if (cantidadLugares.equals(2)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_2));
+                        }
+                        if (cantidadLugares.equals(3)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_3));
+                        }
+                        if (cantidadLugares.equals(4)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_4));
+                        }
+                        if (cantidadLugares.equals(5)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_5));
+                        }
+                        if (cantidadLugares.equals(6)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_6));
+                        }
+                        if (cantidadLugares.equals(7)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_7));
+                        }
+                        if (cantidadLugares.equals(8)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_8));
+                        }
+                        if (cantidadLugares.equals(9)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_9));
+                        }
+                        if (cantidadLugares.equals(10)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_10));
+                        }
+                        if (cantidadLugares.equals(11)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_11));
+                        }
+                        if (cantidadLugares.equals(12)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_12));
+                        }
+                        if (cantidadLugares.equals(13)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_13));
+                        }
+                        if (cantidadLugares.equals(14)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_14));
+                        }
+                        if (cantidadLugares.equals(15)) {
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_lugar_15));
+                        }
+
                     } else {
                         markerOptions.position(new LatLng(latitud,longitud))
                                 .title(nombre)
@@ -177,6 +225,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 //.snippet(tipo_operador + " Lugares Disponibles: "+cantidadLugares+ " Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
                                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
                     }
+
+
 
                     //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
                     tmpRealTimeMarker.add(mMap.addMarker(markerOptions));
@@ -190,6 +240,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                 // pasamos los datos de operador a un nuevo intent-
                                 i.putExtra("ci_operador", marker.getTitle());
                                 i.putExtra("id_conductorMap", id_conductorLogin);
+                                i.putExtra("Nombre_conductor_mapa", nombre_conductor_login);
                                 startActivity(i);
                             } else {
                                 doubleBackToExitPressedOnce = true;
