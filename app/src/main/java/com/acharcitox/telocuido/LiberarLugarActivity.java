@@ -44,7 +44,7 @@ public class LiberarLugarActivity extends AppCompatActivity implements View.OnCl
 
         //Se vincula boton de la activity con la variable creada aqui
         mButtonSubirDatosFirebase = findViewById(R.id.btnLiberarLugar);
-        edittext_nombreusuario = findViewById(R.id.etNombreUsuario);
+        edittext_nombreusuario = findViewById(R.id.nombeusr);
 
         edittext_nombreusuario.setText("Hola, "+ Nombre_conductor_liberar);
 

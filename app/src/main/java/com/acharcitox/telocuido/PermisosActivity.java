@@ -31,8 +31,15 @@ public class PermisosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permisos);
 
+        Bundle extras = getIntent().getExtras();
+        String id_conductorLogin = extras.getString("id_conductor_conductor");
+        String nombre_conductor_login = extras.getString("nombre_conductor");
+
         if(ContextCompat.checkSelfPermission(PermisosActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-            startActivity(new Intent(PermisosActivity.this, MapsActivity.class));
+            Intent i = new Intent(this, MapsActivity.class);
+            i.putExtra("id_conductorMap", id_conductorLogin);
+            i.putExtra("Nombre_conductor_mapa", nombre_conductor_login);
+            startActivity(i);
             finish();
             return;
         }

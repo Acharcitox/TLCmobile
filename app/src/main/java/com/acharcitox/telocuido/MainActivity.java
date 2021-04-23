@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                                     textVId_con.setText("Bienvenido a la mejor aplicacion!");
 
                                     //Paso los datos a la nueva activity, deberia ser el mapa
-                                    Intent i = new Intent(MainActivity.this, MapsActivity.class);
+                                    Intent i = new Intent(MainActivity.this, PermisosActivity.class);
                                     i.putExtra("nombre_conductor", nombre);
                                   //  i.putExtra("apellido_conductor", apellido);
                                     i.putExtra("id_conductor_conductor", id_conductor);
