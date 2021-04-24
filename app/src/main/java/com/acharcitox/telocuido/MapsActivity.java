@@ -9,6 +9,8 @@ import androidx.fragment.app.FragmentActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,6 +39,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
@@ -222,11 +225,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         }
 
                     } else {
+                        int height = 100;
+                        int width = 100;
+
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_parkings);
+                        Bitmap b = bitmapDrawable.getBitmap();
+                        final Bitmap markerParking = Bitmap.createScaledBitmap(b, width, height, false);
                         markerOptions.position(new LatLng(latitud,longitud))
                                 .title(nombre)
                                 .snippet("Doble click para elegir este lugar. " + "Es un " + tipo_operador )
                                 //.snippet(tipo_operador + " Lugares Disponibles: "+cantidadLugares+ " Horario: "+ hora_inicio +"Hs a "+ hora_fin+ "Hs")
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                                .icon(BitmapDescriptorFactory.fromBitmap(markerParking));
                     }
 
 
@@ -289,10 +298,17 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
                         //Aca decido como mostrar el icono en google (.snippet puede agregar una descripcion chica .icon para agregar un icono)
                         //Decido pasarle la posicion
+
+                        int height = 100;
+                        int width = 100;
+
+                        BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_comercios);
+                        Bitmap b = bitmapDrawable.getBitmap();
+                        final Bitmap markerComercio = Bitmap.createScaledBitmap(b, width, height, false);
                         markerOptions.position(new LatLng(latitud,longitud))
                                 .title(nombre+" "+rubro)
                                 .snippet(descripcion)
-                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                                .icon(BitmapDescriptorFactory.fromBitmap(markerComercio));
 
                         //Aca agrego las marcas al mapa, cada punto es la longitud y latitud de la tabla operadores.
                         tmpRealTimeMarkerComercios.add(mMap.addMarker(markerOptions));
