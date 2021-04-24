@@ -39,6 +39,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -126,6 +127,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        // limpio los marcadores por default de maps
+        mMap.setMapStyle(MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json));
 
         mMap.setMyLocationEnabled(true);/*Como ya tengo los permisos en otra activity es solo poner en true*/
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
@@ -428,7 +431,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onPlaceSelected(@NonNull Place place) {
 
-                mMap.clear();
                 mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
@@ -442,34 +444,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         });
     }
 
-    /*private void operadores (GoogleMap googleMap) {
-        mMap = googleMap;
-
-        googleMap.setOnMarkerClickListener(this);
-
-        int height = 80;
-        int width = 80;
-        BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.icon_prueba_cuidacoches);
-        Bitmap b = bitmapDrawable.getBitmap();
-        final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
-        mOperadores.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot s : dataSnapshot.getChildren()) {
-                    operadoresPojo operadores = s.getValue(operadoresPojo.class);
-                    LatLng latLng = new LatLng(operadores.Latitud, operadores.Longitude);
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(operadores.Nombre)).setIcon(BitmapDescriptorFactory.fromBitmap(smallMarker));
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
-    }*/
 
     @Override
     public boolean onMarkerClick(Marker marker) {
