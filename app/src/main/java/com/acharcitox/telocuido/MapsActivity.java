@@ -134,8 +134,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         //Aca recibimos la id del conductor que ingreso
         Bundle extras = getIntent().getExtras();
-        String id_conductorLogin = extras.getString("id_conductor_conductor");
-        String nombre_conductor_login = extras.getString("nombre_conductor");
+        String id_conductorLogin = extras.getString("id_conductorMap");
+        String nombre_conductor_login = extras.getString("Nombre_conductor_mapa");
 
 
         //Para mostrar cuidacoches

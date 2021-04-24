@@ -1,5 +1,6 @@
 package com.acharcitox.telocuido;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -15,6 +16,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.acharcitox.telocuido.model.Conductores;
+import com.acharcitox.telocuido.model.Operadores;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.PermissionToken;
 import com.karumi.dexter.listener.PermissionDeniedResponse;
@@ -36,6 +44,7 @@ public class PermisosActivity extends AppCompatActivity {
         String nombre_conductor_login = extras.getString("nombre_conductor");
 
         if(ContextCompat.checkSelfPermission(PermisosActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
             Intent i = new Intent(this, MapsActivity.class);
             i.putExtra("id_conductorMap", id_conductorLogin);
             i.putExtra("Nombre_conductor_mapa", nombre_conductor_login);
