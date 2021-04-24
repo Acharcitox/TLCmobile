@@ -58,6 +58,8 @@ public class LiberarLugarActivity extends AppCompatActivity implements View.OnCl
         // Creo una variable para recibir la id de la transaccion de la activity anterior.
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
+        String Nombre_conductor_liberar_lug = extras.getString("nombre_conductor");
+        String id_conductor_lug = extras.getString("id_conductorMap");
 
         // Tomo los nuevos datos de los campos de texto de esta activity
         Boolean Esta_libre = true;
@@ -82,6 +84,8 @@ public class LiberarLugarActivity extends AppCompatActivity implements View.OnCl
         //Envio los datos de la transaccion a la proxima activity
         Intent i = new Intent(this, CalificarActivity.class);
         i.putExtra("id_transaccion", Id_transaccion);
+        i.putExtra("Nombre_conductor_l",Nombre_conductor_liberar_lug);
+        i.putExtra("id_conductor_lug",id_conductor_lug);
         startActivity(i);
 
     }

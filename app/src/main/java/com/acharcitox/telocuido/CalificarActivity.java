@@ -49,6 +49,8 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
 
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
+        String Nombre_conductor_c = extras.getString("Nombre_conductor_l");
+        String id_conductor_c = extras.getString("id_conductor_lug");
 
         mButtonSubirDatosFirebase.setOnClickListener(this);
 
@@ -69,6 +71,8 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
                             //Envio los datos de la transaccion a la proxima activity
                             Intent i = new Intent(CalificarActivity.this, DarPropinaActivity.class);
                             i.putExtra("id_transaccion", Id_transaccion);
+                            i.putExtra("Nombre_conductor_c",Nombre_conductor_c);
+                            i.putExtra("id_conductor_c",id_conductor_c);
                             startActivity(i);
                         }
                     }
@@ -115,6 +119,8 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
         // Creo una variable para recibir la id de la transaccion de la activity anterior.
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
+        String Nombre_conductor_c = extras.getString("Nombre_conductor_l");
+        String id_conductor_c = extras.getString("id_conductor_lug");
 
 
 
@@ -149,6 +155,8 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
             //Envio los datos de la transaccion a la proxima activity
             Intent i = new Intent(this, DarPropinaActivity.class);
             i.putExtra("id_transaccion", Id_transaccion);
+            i.putExtra("Nombre_conductor_c",Nombre_conductor_c);
+            i.putExtra("id_conductor_c",id_conductor_c);
             startActivity(i);
         }
 

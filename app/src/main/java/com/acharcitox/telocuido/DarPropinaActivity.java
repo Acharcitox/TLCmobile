@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -42,7 +43,7 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
         mButtonSubirDatosFirebase = findViewById(R.id.btnDarPropina);
         mButtonSubirDatosFirebase.setOnClickListener(this);
 
-        editTextMonto = findViewById(R.id.eTMonto);
+        editTextMonto = findViewById(R.id.txtotromonto);
     }
 
     @Override
@@ -51,6 +52,9 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
         // Creo una variable para recibir la id de la transaccion de la activity anterior.
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
+        String id_conductor_d = extras.getString("id_conductor_c");
+        String nombre_conductor_d = extras.getString("Nombre_conductor_c");
+
 
 
 
@@ -62,6 +66,8 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
             //Lo mando al Mapa nuevamente
             Intent i = new Intent(this, DenunciarActivity.class);
             i.putExtra("id_transaccion", Id_transaccion);
+            i.putExtra("nombre_conductor_d", nombre_conductor_d);
+            i.putExtra("id_conductor_d", id_conductor_d);
             startActivity(i);
 
         } else {
@@ -83,13 +89,16 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
             //Con esto agrego los nuevos campos.
             hopperRef.updateChildren(hopperUpdates);
 
-            //Muestro carte de agregado.
-            Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
-
             //Lo mando al Mapa nuevamente
             Intent i = new Intent(this, DenunciarActivity.class);
             i.putExtra("id_transaccion", Id_transaccion);
+            i.putExtra("nombre_conductor", nombre_conductor_d);
+            i.putExtra("id_conductor_d", id_conductor_d);
             startActivity(i);
+
+            //Muestro carte de agregado.
+            Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
+
         }
 
     }

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     EditText eTcontrasena, eTcorreo;
     TextView textVId_con;
 
-    Button irMapa;
+//    Button irMapa;
 
 
     @Override
@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         eTcontrasena = findViewById(R.id.eTcontrasenaLogin);
         textVId_con = findViewById(R.id.tvId_con);
 
-        irMapa = findViewById(R.id.btnIrMapa);
+ //       irMapa = findViewById(R.id.btnIrMapa);
 
 
 
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
             //Cierro el teclado
             cerrarTeclado();
 
-            //Limpio los textbox
-            limpiarCajas();
+  //          //Limpio los textbox
+//            limpiarCajas();
             if (editTcorreo.equals("") || editTcontrasena.equals("")) {
                 validacion();
             } else {
@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                             }
+                        }else{
+                            textVId_con.setText("Usuario o contraseña incorrecta, intente nuevamente");
                         }
 
 
