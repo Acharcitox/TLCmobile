@@ -6,10 +6,11 @@
     android:layout_height="match_parent"
     android:background="@color/fondo"
     tools:context=".RegisterActivity">
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="248dp"
+        android:layout_height="120dp"
         android:background="@drawable/corners"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
@@ -23,7 +24,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColorHint="#989191">
 
 
         <EditText
@@ -32,7 +34,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/register_nombre"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <EditText
             android:id="@+id/eTApellido"
@@ -40,7 +44,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/register_apellido"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <EditText
             android:id="@+id/eTTelefono"
@@ -48,7 +54,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/register_celular"
-            android:inputType="text|phone" />
+            android:inputType="text|phone"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <EditText
             android:id="@+id/eTCorreo"
@@ -56,7 +64,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/register_Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <EditText
             android:id="@+id/eTPass"
@@ -64,7 +74,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/register_contrasena"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <EditText
             android:id="@+id/eTPassC"
@@ -72,7 +84,9 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="@string/register_contrasena2"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"/>
 
         <Button
             android:layout_width="wrap_content"

@@ -8,64 +8,59 @@
     android:background="@color/fondo"
     tools:context=".DenunciarActivity">
 
+    <TextView
+        android:id="@+id/nombeusr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedro,"
+        android:textColor="@color/colorPrimary"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="153dp"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="413dp"
-        android:layout_height="187dp"
+        android:layout_width="400dp"
+        android:layout_height="125dp"
         android:background="@drawable/corners"
         android:shadowColor="@color/black"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="0dp" />
 
-    <TextView
-        android:id="@+id/txtdenuncua"
-        android:layout_width="346dp"
-        android:layout_height="195dp"
-        android:layout_marginTop="60dp"
-        android:background="@drawable/cornertext"
-        android:gravity="center"
-        android:text="que le ocurrió?"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/tv_propina"
-        android:layout_width="234dp"
-        android:layout_height="33dp"
-        android:text="¿Desea Realizar una denuncia?"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
-        app:layout_constraintStart_toStartOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.487"
-        tools:ignore="MissingConstraints"></TextView>
-
     <EditText
         android:id="@+id/eTTipo_Denuncia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="210dp"
         android:inputType="text"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="670dp"
-        android:visibility="invisible"
-        tools:ignore="MissingConstraints"></EditText>
+        android:hint="¿Podrias indicarnos si hubo algun problema?"
+        app:layout_constraintTop_toTopOf="@+id/textView4"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-16dp"
+        android:textColor="@color/black"
+        android:textColorHint="#989191"/>
+
 
     <EditText
-        android:id="@+id/eTDenuncia"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="635dp"
-        android:visibility="invisible"
-        tools:ignore="MissingConstraints"></EditText>
+        android:id="@+id/txtdenuncua"
+        android:layout_width="346dp"
+        android:layout_height="195dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/cornertext"
+        android:gravity="center"
+        android:hint="Por favor detallarnos que ocurrio."
+        android:textColor="@color/black"
+        android:textColorHint="#989191"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eTTipo_Denuncia"
+        tools:ignore="MissingConstraints" />
+
 
     <Button
         android:id="@+id/btnDenunciar"

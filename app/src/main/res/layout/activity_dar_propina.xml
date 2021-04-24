@@ -47,32 +47,24 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
+
+
     <EditText
-        android:id="@+id/eTMonto"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.998"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp" />
-
-
-    <TextView
         android:id="@+id/txtotromonto"
         android:layout_width="311dp"
         android:layout_height="60dp"
         android:layout_marginBottom="248dp"
-        android:background="@drawable/cornertext"
+        android:textColorHint="#989191"
+        android:textColor="@color/black"
         android:gravity="center"
-        android:text="INGRESAR OTRO MONTO"
+        android:hint="INGRESAR OTRO MONTO"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="0.293"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:inputType="number"/>
 
     <TextView
         android:id="@+id/nombeusr"
