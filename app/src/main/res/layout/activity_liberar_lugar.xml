@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/promopraga"
         tools:layout_editor_absoluteY="286dp"
         tools:ignore="MissingConstraints"
-        android:contentDescription="TODO" />
+        android:contentDescription="@string/todo" />
 
 
     <Button
