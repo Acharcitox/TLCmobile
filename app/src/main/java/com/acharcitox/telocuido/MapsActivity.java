@@ -447,7 +447,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onPlaceSelected(@NonNull Place place) {
 
-                mMap.addMarker(new MarkerOptions().position(place.getLatLng()).title(place.getAddress()));
+                int height = 100;
+                int width = 100;
+
+                BitmapDrawable bitmapDrawable = (BitmapDrawable) getResources().getDrawable(R.drawable.ic_auto);
+                Bitmap b = bitmapDrawable.getBitmap();
+                final Bitmap markerAuto = Bitmap.createScaledBitmap(b, width, height, false);
+
+                mMap.addMarker(new MarkerOptions().position(place.getLatLng())
+                                                  .title(place.getAddress())
+                                                  .icon(BitmapDescriptorFactory.fromBitmap(markerAuto)));
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(place.getLatLng()));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), DEFAULT_ZOOM));
                 Log.i("Tag", "Lugar elegido: " + place.getAddress());
