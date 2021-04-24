@@ -8,66 +8,76 @@
     android:orientation="vertical"
     tools:context=".CalificarActivity">
 
-    <TextView
+    <LinearLayout
         android:id="@+id/textViewsup"
         android:layout_width="match_parent"
         android:layout_height="248dp"
         android:background="@drawable/corners"
         android:shadowColor="@color/black"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="3dp" />
+        tools:layout_editor_absoluteY="3dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_propina"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:text="¿Que calificacion le pondrias al operador?"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/roboto"
+            android:textSize="22sp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="-16dp"
+            tools:layout_editor_absoluteY="148dp" />
+
+        <EditText
+            android:id="@+id/eTComentario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="36dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="585dp"/>
+
+    </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/tv_propina"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="¿Que calificacion le pondrias al operador?"
-        android:textColor="@color/colorPrimary"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="148dp" />
 
-    <EditText
+    <!--<EditText
         android:id="@+id/eTCalificacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="540dp"></EditText>
-
-    <EditText
-        android:id="@+id/eTComentario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="585dp"></EditText>
+        tools:layout_editor_absoluteY="540dp"/>-->
 
     <Button
         android:id="@+id/btnCalificar"
         android:layout_width="270dp"
         android:layout_height="46dp"
         android:text="Enviar Calificación"
+        android:onClick="calificar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ratingoperator"
         app:layout_constraintVertical_bias="0.223"
+        android:backgroundTint="@color/colorPrimary"
         tools:ignore="MissingConstraints" />
 
     <RatingBar
         android:id="@+id/ratingoperator"
-        android:layout_width="297dp"
+        android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:layout_marginTop="316dp"
         android:numStars="5"
         android:progressTint="@color/quantum_yellow"
         android:rating="5"
-        android:stepSize="0.5"
+        android:stepSize="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textViewsup"
