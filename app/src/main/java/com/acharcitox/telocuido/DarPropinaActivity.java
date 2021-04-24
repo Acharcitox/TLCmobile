@@ -59,7 +59,7 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
 
 
 //arreglar el if para que valide bien
-        if(editTextMonto.getText().toString().isEmpty()){
+ /*       if(editTextMonto.getText().toString().isEmpty()){
             //Muestro carte de agregado.
             Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
 
@@ -71,7 +71,7 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
             startActivity(i);
 
         } else {
-
+*/
             // Tomo los nuevos datos de los campos de texto de esta activity
             int Monto_propina = Integer.parseInt(editTextMonto.getText().toString());
             String Fecha_hora_propina = dateFormat.format(date);
@@ -103,4 +103,4 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
 
     }
 
-}
+
