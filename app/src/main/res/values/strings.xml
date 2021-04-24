@@ -28,4 +28,6 @@
     <string name="register_btnEnviarDatos">Enviar Datos</string>
     <string name="liberar">Liberar Lugar</string>
     <string name="desea_liberar_el_lugar">"¿Deseas liberar el lugar ocupado?"</string>
+    <string name="Promo_Liberar_lugar">PRAGA Restaurant Café .Plaza Independencia 1358.</string>
+    <string name="NombreUSR_Liberar_Lugar">Pedro,</string>
 </resources>

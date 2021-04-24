@@ -13,7 +13,6 @@
         android:id="@+id/btnDarPropina"
         android:layout_width="209dp"
         android:layout_height="73dp"
-        android:layout_marginTop="88dp"
         android:background="@drawable/botones"
         android:text="PAGAR"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -21,14 +20,14 @@
         app:layout_constraintHorizontal_bias="0.806"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtotromonto"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.3"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="248dp"
-        android:layout_marginBottom="492dp"
+        android:layout_height="212dp"
+        android:layout_marginBottom="516dp"
         android:background="@drawable/corners"
         android:shadowColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -39,63 +38,32 @@
         android:id="@+id/tvPropina"
         android:layout_width="263dp"
         android:layout_height="28dp"
+        android:layout_marginBottom="36dp"
         android:text="¿Desea darle propina al Operador?"
         android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="91dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/eTMonto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        tools:layout_editor_absoluteX="-16dp"
-        tools:layout_editor_absoluteY="598dp"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn20"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
-        android:text="20"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn40"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.33"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn40"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
-        android:text="40"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.339"
+        app:layout_constraintVertical_bias="0.998"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="163dp" />
+        tools:layout_editor_absoluteX="0dp" />
 
-    <Button
-        android:id="@+id/btn60"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
-        android:text="60"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn40"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.331"
-        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/txtotromonto"
         android:layout_width="311dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="248dp"
         android:background="@drawable/cornertext"
         android:gravity="center"
         android:text="INGRESAR OTRO MONTO"
@@ -103,8 +71,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn40"
-        app:layout_constraintVertical_bias="0.138"
+        app:layout_constraintVertical_bias="0.293"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -117,8 +84,52 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/tvPropina"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="19dp" />
+
+
+    <Button
+        android:id="@+id/btn60"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="right"
+        android:text="60"
+        app:layout_constraintBottom_toTopOf="@+id/txtotromonto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toEndOf="@+id/btn40"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.414"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn20"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
+        android:layout_gravity="left"
+        android:text="20"
+        app:layout_constraintBottom_toTopOf="@+id/txtotromonto"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.414"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/btn40"
+        android:layout_width="85dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="40"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn20"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.121"
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

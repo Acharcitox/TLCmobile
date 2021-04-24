@@ -54,6 +54,7 @@
         android:inputType="text"
         tools:layout_editor_absoluteX="-2dp"
         tools:layout_editor_absoluteY="670dp"
+        android:visibility="invisible"
         tools:ignore="MissingConstraints"></EditText>
 
     <EditText
@@ -63,6 +64,7 @@
         android:inputType="text"
         tools:layout_editor_absoluteX="-16dp"
         tools:layout_editor_absoluteY="635dp"
+        android:visibility="invisible"
         tools:ignore="MissingConstraints"></EditText>
 
     <Button

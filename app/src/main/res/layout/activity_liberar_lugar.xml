@@ -6,8 +6,21 @@
     android:layout_height="match_parent"
     android:background="#CCE2EC"
     android:orientation="vertical"
-
     tools:context=".LiberarLugarActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foregroundGravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/promopraga"
+        tools:layout_editor_absoluteY="286dp"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="TODO" />
 
 
     <Button
@@ -51,39 +64,22 @@
         app:layout_constraintTop_toTopOf="@+id/textView4"
         tools:ignore="MissingConstraints" />
 
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/promos"
-        android:layout_width="211dp"
-        android:layout_height="162dp"
-        android:layout_marginTop="68dp"
-        android:adjustViewBounds="true"
-        android:scaleType="center"
-
-
-        android:src="@drawable/promopraga"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:shapeAppearanceOverlay="@style/bordercurved"
-        app:strokeColor="@color/teal_700"
-        tools:ignore="MissingConstraints" />
-
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PRAGA Restaurant Café .Plaza Independencia 1358."
+        android:text="@string/Promo_Liberar_lugar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/promos"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/nombeusr"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pedro,"
+        android:text="@string/NombreUSR_Liberar_Lugar"
         android:textColor="@color/colorPrimary"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -92,5 +88,7 @@
         app:layout_constraintVertical_bias="0.545"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="43dp" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
