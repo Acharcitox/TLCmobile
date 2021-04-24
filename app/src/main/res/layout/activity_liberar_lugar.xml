@@ -8,20 +8,23 @@
     android:orientation="vertical"
     tools:context=".LiberarLugarActivity">
 
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/todo"
         android:foregroundGravity="center_horizontal"
         android:gravity="center_horizontal"
         android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintVertical_bias="0.611"
         app:srcCompat="@drawable/promopraga"
-        tools:layout_editor_absoluteY="286dp"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="@string/todo" />
-
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/btnLiberarLugar"

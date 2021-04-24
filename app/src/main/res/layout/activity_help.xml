@@ -11,5 +11,6 @@
         android:layout_height="wrap_content"
         android:text="Ayuda"
         tools:layout_editor_absoluteX="155dp"
-        tools:layout_editor_absoluteY="286dp" />
+        tools:layout_editor_absoluteY="286dp"
+        tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>

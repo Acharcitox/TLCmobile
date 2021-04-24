@@ -38,6 +38,7 @@
             android:inputType="text"
             android:layout_marginTop="36dp"
             tools:ignore="MissingConstraints"
+            android:visibility="invisible"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="585dp"/>
 
