@@ -8,23 +8,34 @@
     android:orientation="vertical"
     tools:context=".LiberarLugarActivity">
 
-
-    <ImageView
-        android:id="@+id/imageView3"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="@string/todo"
-        android:foregroundGravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.611"
-        app:srcCompat="@drawable/promopraga"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLiberarLugar"
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/todo"
+            android:foregroundGravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:layout_constraintVertical_bias="0.77"
+            app:srcCompat="@drawable/promopraga"
+            android:layout_marginTop="150dp"
+            tools:ignore="MissingConstraints" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/btnLiberarLugar"
@@ -94,4 +105,7 @@
 
 
 
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

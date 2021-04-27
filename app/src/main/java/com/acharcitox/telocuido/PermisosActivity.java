@@ -63,7 +63,11 @@ public class PermisosActivity extends AppCompatActivity {
                         .withListener(new PermissionListener() {
                             @Override
                             public void onPermissionGranted(PermissionGrantedResponse response) {
-                                startActivity(new Intent(PermisosActivity.this, MapsActivity.class));
+                                //startActivity(new Intent(PermisosActivity.this, MapsActivity.class));
+                                Intent i = new Intent(PermisosActivity.this, MapsActivity.class);
+                                i.putExtra("id_conductorMap", id_conductorLogin);
+                                i.putExtra("Nombre_conductor_mapa", nombre_conductor_login);
+                                startActivity(i);
                                 finish();
                             }
 
