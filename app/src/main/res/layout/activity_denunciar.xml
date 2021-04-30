@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,84 +8,76 @@
     android:background="@color/fondo"
     tools:context=".DenunciarActivity">
 
-    <TextView
-        android:id="@+id/nombeusr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Pedro,"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="153dp"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
+    <LinearLayout
         android:id="@+id/textView4"
-        android:layout_width="400dp"
-        android:layout_height="125dp"
-        android:background="@drawable/corners"
-        android:shadowColor="@color/black"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="0dp" />
-
-    <EditText
-        android:id="@+id/eTTipo_Denuncia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="210dp"
-        android:inputType="text"
-        android:hint="¿Podrias indicarnos si hubo algun problema?"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-16dp"
-        android:textColor="@color/black"
-        android:textColorHint="#989191"/>
+        android:orientation="vertical"
+        android:background="@drawable/corners"
+        android:shadowColor="@color/black">
+
+        <TextView
+            android:id="@+id/nombeusr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedro,"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginTop="36dp" />
+
+        <EditText
+            android:id="@+id/eTTipo_Denuncia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:hint="¿Hubo algún problema?"
+            android:inputType="text"
+            android:textColor="@color/black"
+            android:textColorHint="#989191"
+            app:layout_constraintTop_toTopOf="@+id/textView4"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/txtdenuncua"
+            android:layout_width="346dp"
+            android:layout_height="195dp"
+            android:background="@drawable/cornertext"
+            android:gravity="center_horizontal"
+            android:layout_marginTop="36dp"
+            android:layout_marginLeft="8dp"
+            android:hint="Por favor, detalla qué ocurrió."
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textColorHint="#989191"
+            tools:layout_editor_absoluteY="286dp" />
+
+        <Button
+            android:id="@+id/btnDenunciar"
+            android:layout_width="338dp"
+            android:layout_height="53dp"
+            android:layout_below="@+id/txtdenuncua"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="9dp"
+            android:text="Enviar Denuncia" />
+
+        <Button
+            android:id="@+id/btnOmitir"
+            android:layout_width="341dp"
+            android:layout_height="48dp"
+            android:layout_below="@id/btnDenunciar"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="9dp"
+            android:text="Omitir" />
+
+    </LinearLayout>
 
 
-    <EditText
-        android:id="@+id/txtdenuncua"
-        android:layout_width="346dp"
-        android:layout_height="195dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/cornertext"
-        android:gravity="center"
-        android:hint="Por favor detallarnos que ocurrio."
-        android:textColor="@color/black"
-        android:textColorHint="#989191"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eTTipo_Denuncia"
-        tools:ignore="MissingConstraints" />
-
-
-    <Button
-        android:id="@+id/btnDenunciar"
-        android:layout_width="338dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="20dp"
-        android:text="Enviar Denuncia"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.547"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtdenuncua"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btnOmitir"
-        android:layout_width="341dp"
-        android:layout_height="48dp"
-        android:text="Omitir"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.528"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDenunciar"
-        app:layout_constraintVertical_bias="0.204"
-        tools:ignore="MissingConstraints" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

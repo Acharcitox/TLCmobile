@@ -23,30 +23,43 @@
         app:layout_constraintVertical_bias="0.3"
         tools:ignore="MissingConstraints" />
 
-    <TextView
+    <LinearLayout
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="212dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="516dp"
         android:background="@drawable/corners"
         android:shadowColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/tvPropina"
-        android:layout_width="263dp"
-        android:layout_height="28dp"
-        android:layout_marginBottom="36dp"
-        android:text="¿Desea darle propina al Operador?"
-        android:textColor="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="MissingConstraints" />
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints" >
 
+        <TextView
+            android:id="@+id/nombeusr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedro,"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            tools:layout_editor_absoluteX="19dp" />
+
+        <TextView
+            android:id="@+id/tvPropina"
+            android:layout_width="263dp"
+            android:layout_height="28dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="10dp"
+            android:text="¿Desea darle propina al Operador?"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/roboto"
+            android:textSize="16sp"/>
+
+    </LinearLayout>
 
 
     <EditText
@@ -66,62 +79,41 @@
         tools:ignore="MissingConstraints"
         android:inputType="number"/>
 
-    <TextView
-        android:id="@+id/nombeusr"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Pedro,"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvPropina"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="19dp" />
-
-
-    <Button
-        android:id="@+id/btn60"
-        android:layout_width="wrap_content"
-        android:layout_height="80dp"
-        android:layout_gravity="right"
-        android:text="$ 60"
-        app:layout_constraintBottom_toTopOf="@+id/txtotromonto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
-        app:layout_constraintStart_toEndOf="@+id/btn40"
+        android:orientation="horizontal"
+        android:layout_marginTop="36dp"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.414"
-        tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn20"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
-        android:layout_gravity="left"
-        android:text="$ 20"
-        app:layout_constraintBottom_toTopOf="@+id/txtotromonto"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.414"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints">
 
-    <Button
-        android:id="@+id/btn40"
-        android:layout_width="85dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:text="$ 40"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn20"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.121"
-        tools:ignore="MissingConstraints" />
+        <Button
+            android:id="@+id/btn60"
+            android:layout_width="wrap_content"
+            android:layout_height="80dp"
+            android:layout_gravity="right"
+            android:text="$ 60"
+            android:layout_marginLeft="8dp"/>
+
+        <Button
+            android:id="@+id/btn20"
+            android:layout_width="85dp"
+            android:layout_height="80dp"
+            android:layout_gravity="left"
+            android:text="$ 20"
+            android:layout_marginLeft="8dp"/>
+
+        <Button
+            android:id="@+id/btn40"
+            android:layout_width="85dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="8dp"
+            android:text="$ 40" />
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
 
                 //Poner variable en String para pasar la consulta
-                Query q = refDatos.child("Conductores").orderByChild("mail").equalTo(editTcorreo);
+                Query q = refDatos.child("Conductores").orderByChild("Mail").equalTo(editTcorreo);
                 q.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -94,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(i);
 
                                 } else {
-                                    limpiarCajas();
+
                                     textVId_con.setText("Usuario o contraseña incorrecta, intente nuevamente");
+                                    limpiarCajas();
                                 }
 
                             }
