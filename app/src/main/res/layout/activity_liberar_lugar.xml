@@ -8,61 +8,75 @@
     android:orientation="vertical"
     tools:context=".LiberarLugarActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:foregroundGravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:textAlignment="center"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="311dp"
+        android:layout_height="202dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:layout_marginTop="36dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/promopraga"
-        tools:layout_editor_absoluteY="286dp"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="TODO" />
+        tools:ignore="MissingConstraints">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/todo"
+            app:srcCompat="@drawable/promopraga" />
+
+    </LinearLayout>
 
 
-    <Button
-        android:id="@+id/btnLiberarLugar"
-        android:layout_width="313dp"
-        android:layout_height="36dp"
-        android:background="@drawable/botones"
-        android:gravity="center_horizontal"
-        android:text="@string/liberar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.189"
-        app:rippleColor="@color/quantum_googgreen800"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
+    <LinearLayout
         android:id="@+id/textView4"
         android:layout_width="match_parent"
-        android:layout_height="248dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:layout_marginLeft="4dp"
         android:background="@drawable/corners"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="4dp" />
+        tools:layout_editor_absoluteY="4dp" >
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="318dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="84dp"
-        android:text="@string/desea_liberar_el_lugar"
-        android:textColor="@color/colorPrimary"
+        <TextView
+            android:id="@+id/nombeusr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/NombreUSR_Liberar_Lugar"
+            android:textColor="@color/colorPrimary"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            tools:layout_editor_absoluteX="43dp" />
 
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        tools:ignore="MissingConstraints" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="318dp"
+            android:layout_height="27dp"
+            android:text="@string/desea_liberar_el_lugar"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"/>
+
+        <Button
+            android:id="@+id/btnLiberarLugar"
+            android:layout_width="313dp"
+            android:layout_height="36dp"
+            android:background="@drawable/botones"
+            android:gravity="center_horizontal"
+            android:text="@string/liberar"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginBottom="10dp"
+            app:rippleColor="@color/quantum_googgreen800" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView5"
@@ -72,23 +86,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.314"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/nombeusr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/NombreUSR_Liberar_Lugar"
-        android:textColor="@color/colorPrimary"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.545"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="43dp" />
-
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

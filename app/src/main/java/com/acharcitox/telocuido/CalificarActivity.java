@@ -52,8 +52,6 @@ public class CalificarActivity extends AppCompatActivity implements View.OnClick
         String Nombre_conductor_c = extras.getString("Nombre_conductor_l");
         String id_conductor_c = extras.getString("id_conductor_lug");
 
-        mButtonSubirDatosFirebase.setOnClickListener(this);
-
         editTextComentario = findViewById(R.id.eTComentario);
 
         mButtonSubirDatosFirebase.setOnClickListener(new View.OnClickListener() {

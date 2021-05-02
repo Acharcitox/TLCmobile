@@ -8,11 +8,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -57,33 +61,39 @@ public class DenunciarActivity extends AppCompatActivity   {
             @Override
             public void onClick(View v) {
 
-                //Envio los datos de la transaccion a la proxima activity
-                Intent i = new Intent(DenunciarActivity.this, MapsActivity.class);
-                i.putExtra("Nombre_conductor_mapa", nombre_conductor_de);
-                i.putExtra("id_conductorMap", id_conductor_de);
-                startActivity(i);
+                DatabaseReference denunciaReference = firebaseDatabase.getReference().child("Ocupar_lugar").child(Id_transaccion);
 
-                    // Tomo los nuevos datos de los campos de texto de esta activity
-                    String Tipo_denuncia = editTextTipo_Denuncia.getText().toString();
-                    String Texto_denuncia = editTextDenuncia.getText().toString();
+                denunciaReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    //Se referencia la base y nos ubicamos en el lugar correspondiente para insertar los nuevos campos.
-                    DatabaseReference ref = firebaseDatabase.getReference();
-                    DatabaseReference ocupaRef = ref.child("Ocupar_lugar");
-                    DatabaseReference hopperRef = ocupaRef.child(Id_transaccion);
+                        if (snapshot.exists()) {
 
-                    // Inserto los nuevos campos en la transaccion indicada.
-                    Map<String, Object> hopperUpdates = new HashMap<>();
-                    hopperUpdates.put("Tipo_denuncia",(Tipo_denuncia));
-                    hopperUpdates.put("texto_denuncia",(Texto_denuncia));
+                            // Tomo los nuevos datos de los campos de texto de esta activity
+                            String Tipo_denuncia = editTextTipo_Denuncia.getText().toString();
+                            String Texto_denuncia = editTextDenuncia.getText().toString();
 
-                    //Con esto agrego los nuevos campos.
-                    hopperRef.updateChildren(hopperUpdates);
+                            // Inserto los nuevos campos en la transaccion indicada.
+                            denunciaReference.child("Tipo_denuncia").setValue(Tipo_denuncia);
+                            denunciaReference.child("Texto_denuncia").setValue(Texto_denuncia);
 
+                            //Envio los datos de la transaccion a la proxima activity
+                            Intent i = new Intent(DenunciarActivity.this, MapsActivity.class);
+                            i.putExtra("Nombre_conductor_mapa", nombre_conductor_de);
+                            i.putExtra("id_conductorMap", id_conductor_de);
+                            startActivity(i);
 
+                        }
 
-                //Muestro carte de agregado.
-                Toast.makeText(DenunciarActivity.this, "Se ingreso la denuncia correctamente.", Toast.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                });
+
             }
     });
 

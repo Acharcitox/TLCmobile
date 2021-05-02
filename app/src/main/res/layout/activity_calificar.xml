@@ -38,6 +38,7 @@
             android:inputType="text"
             android:layout_marginTop="36dp"
             tools:ignore="MissingConstraints"
+
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="585dp"/>
 
@@ -59,7 +60,7 @@
         android:layout_width="270dp"
         android:layout_height="46dp"
         android:text="Enviar Calificación"
-        android:onClick="calificar"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"

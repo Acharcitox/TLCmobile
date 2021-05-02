@@ -7,12 +7,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -41,14 +45,74 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
 
         //Se vincula boton de la activity con la variable creada aqui
         mButtonSubirDatosFirebase = findViewById(R.id.btnDarPropina);
-        mButtonSubirDatosFirebase.setOnClickListener(this);
 
         editTextMonto = findViewById(R.id.txtotromonto);
-    }
 
+        Bundle extras = getIntent().getExtras();
+        String Id_transaccion = extras.getString("id_transaccion");
+        String id_conductor_d = extras.getString("id_conductor_c");
+        String nombre_conductor_d = extras.getString("Nombre_conductor_c");
+
+        mButtonSubirDatosFirebase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Se referencia la base y nos ubicamos en el lugar correspondiente para insertar los nuevos campos.
+                DatabaseReference propinaReference = firebaseDatabase.getReference().child("Ocupar_lugar").child(Id_transaccion);
+
+                propinaReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                        if (editTextMonto.getText().toString().isEmpty()){
+                            //Muestro carte de agregado.
+                            Toast.makeText(DarPropinaActivity.this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
+
+                            //Lo mando al Mapa nuevamente
+                            Intent i = new Intent(DarPropinaActivity.this, DenunciarActivity.class);
+                            i.putExtra("id_transaccion", Id_transaccion);
+                            i.putExtra("nombre_conductor_d", nombre_conductor_d);
+                            i.putExtra("id_conductor_d", id_conductor_d);
+                            startActivity(i);
+
+                        } else if( snapshot.exists()){
+
+                            // Tomo los nuevos datos de los campos de texto de esta activity
+                            int Monto_propina = Integer.parseInt(editTextMonto.getText().toString());
+                            String Fecha_hora_propina = dateFormat.format(date);
+
+                            // Inserto los nuevos campos en la transaccion indicada.
+                           propinaReference.child("Monto_propina").setValue(Monto_propina);
+                           propinaReference.child("Fecha_hora_propina").setValue(Fecha_hora_propina);
+
+                            //Lo mando al Mapa nuevamente
+                            Intent i = new Intent(DarPropinaActivity.this, DenunciarActivity.class);
+                            i.putExtra("id_transaccion", Id_transaccion);
+                            i.putExtra("nombre_conductor_d", nombre_conductor_d);
+                            i.putExtra("id_conductor_d", id_conductor_d);
+                            startActivity(i);
+
+                            //Muestro carte de agregado.
+                            Toast.makeText(DarPropinaActivity.this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+
+            }
+        });
+
+
+    }
+    //Esto no hace nada
     @Override
     public void onClick(View v) {
-
+      /*
         // Creo una variable para recibir la id de la transaccion de la activity anterior.
         Bundle extras = getIntent().getExtras();
         String Id_transaccion = extras.getString("id_transaccion");
@@ -58,8 +122,8 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
 
 
 
-//arreglar el if para que valide bien
- /*       if(editTextMonto.getText().toString().isEmpty()){
+        //arreglar el if para que valide bien
+        if(editTextMonto.getText().toString().isEmpty()){
             //Muestro carte de agregado.
             Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
 
@@ -71,7 +135,7 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
             startActivity(i);
 
         } else {
-*/
+
             // Tomo los nuevos datos de los campos de texto de esta activity
             int Monto_propina = Integer.parseInt(editTextMonto.getText().toString());
             String Fecha_hora_propina = dateFormat.format(date);
@@ -92,15 +156,15 @@ public class DarPropinaActivity extends AppCompatActivity implements View.OnClic
             //Lo mando al Mapa nuevamente
             Intent i = new Intent(this, DenunciarActivity.class);
             i.putExtra("id_transaccion", Id_transaccion);
-            i.putExtra("nombre_conductor", nombre_conductor_d);
+            i.putExtra("nombre_conductor_d", nombre_conductor_d);
             i.putExtra("id_conductor_d", id_conductor_d);
             startActivity(i);
 
             //Muestro carte de agregado.
             Toast.makeText(this, "Se dio propina correctamente.", Toast.LENGTH_LONG).show();
 
-        }
+        }*/
 
     }
 
-
+}

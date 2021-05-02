@@ -94,8 +94,9 @@ public class MainActivity extends AppCompatActivity {
                                     startActivity(i);
 
                                 } else {
-                                    limpiarCajas();
+
                                     textVId_con.setText("Usuario o contraseña incorrecta, intente nuevamente");
+                                    limpiarCajas();
                                 }
 
                             }
