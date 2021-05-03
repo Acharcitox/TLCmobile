@@ -3,11 +3,13 @@ package com.acharcitox.telocuido;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -72,6 +74,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         String Password = editTextPass.getText().toString();
         String PasswordC = editTextPassC.getText().toString();
         Boolean Estado = true;
+
+        //Cierro el teclado
+        cerrarTeclado();
 
         //Validacion si esta vacio
         if (Nombre.equals("")|| Mail_ingresado.equals("")|| Telefono.equals("")|| Password.equals("")|| PasswordC.equals("")){
@@ -167,4 +172,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         editTextPass.setText("");
         editTextPassC.setText("");
     }
+
+    //MEtodo para cerrar el teclado lugo que hagan click en iniciar sesion
+    public void cerrarTeclado(){
+        View view = this.getCurrentFocus();
+        if(view!= null){
+            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),0);
+        }
+    }
+
 }

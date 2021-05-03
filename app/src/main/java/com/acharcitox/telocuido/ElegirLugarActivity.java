@@ -21,6 +21,9 @@ import java.util.UUID;
 
 public class ElegirLugarActivity extends AppCompatActivity implements View.OnClickListener {
 
+
+    // eliminar
+
     //Se crea variable para hacer referencia a la base de datos
     DatabaseReference mRootReference;
 

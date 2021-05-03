@@ -33,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     EditText eTcontrasena, eTcorreo;
     TextView textVId_con;
 
-//    Button irMapa;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +44,6 @@ public class MainActivity extends AppCompatActivity {
         eTcorreo = findViewById(R.id.eTcorreoLogin);
         eTcontrasena = findViewById(R.id.eTcontrasenaLogin);
         textVId_con = findViewById(R.id.tvId_con);
-
- //       irMapa = findViewById(R.id.btnIrMapa);
-
-
 
         // Genero el evento al hacer click en el boton iniciar sesion
         mButtonLoginFirebase.setOnClickListener(v -> {
@@ -67,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
 
                 //Poner variable en String para pasar la consulta
-                Query q = refDatos.child("Conductores").orderByChild("Mail").equalTo(editTcorreo);
+                Query q = refDatos.child("Conductores").orderByChild("mail").equalTo(editTcorreo);
                 q.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -78,7 +72,6 @@ public class MainActivity extends AppCompatActivity {
                                 Conductores conductorSeleccionado = conductor.getValue(Conductores.class);
                                 String passw = conductorSeleccionado.getPassword();
                                 String nombre = conductorSeleccionado.getNombre();
-                               // String apellido = conductorSeleccionado.getApellido();
                                 String id_conductor = conductorSeleccionado.getId_conductor();
 
 
@@ -89,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
                                     //Paso los datos a la nueva activity, deberia ser el mapa
                                     Intent i = new Intent(MainActivity.this, PermisosActivity.class);
                                     i.putExtra("nombre_conductor", nombre);
-                                  //  i.putExtra("apellido_conductor", apellido);
                                     i.putExtra("id_conductor_conductor", id_conductor);
                                     startActivity(i);
 
@@ -155,9 +147,5 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void irMapa (View v) {
-        Intent i = new Intent(this, MapsActivity2.class);
-        startActivity(i);
-    }
 
 }
