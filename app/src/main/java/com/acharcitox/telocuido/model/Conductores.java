@@ -2,33 +2,34 @@ package com.acharcitox.telocuido.model;
 
 public class Conductores {
 //Campos de la base de datos
-    private String Id_conductor;
-    private String Mail;
+    private String id_conductor;
+    private String mail;
     private String usuario;
-    private String Password;
-    private String Nombre;
-    private String Apellido;
-    private String Telefono;
-    private Boolean Estado;
+    private String password;
+    private String nombre;
+    private String apellido;
+    private String telefono;
+    private Boolean estado;
 //Constructor
     public Conductores() {
     }
 // Getters and Setters
 
+
     public String getId_conductor() {
-        return Id_conductor;
+        return id_conductor;
     }
 
     public void setId_conductor(String id_conductor) {
-        Id_conductor = id_conductor;
+        this.id_conductor = id_conductor;
     }
 
     public String getMail() {
-        return Mail;
+        return mail;
     }
 
     public void setMail(String mail) {
-        Mail = mail;
+        this.mail = mail;
     }
 
     public String getUsuario() {
@@ -40,48 +41,48 @@ public class Conductores {
     }
 
     public String getPassword() {
-        return Password;
+        return password;
     }
 
     public void setPassword(String password) {
-        Password = password;
+        this.password = password;
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public String getApellido() {
-        return Apellido;
+        return apellido;
     }
 
     public void setApellido(String apellido) {
-        Apellido = apellido;
+        this.apellido = apellido;
     }
 
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     public void setTelefono(String telefono) {
-        Telefono = telefono;
+        this.telefono = telefono;
     }
 
     public Boolean getEstado() {
-        return Estado;
+        return estado;
     }
 
     public void setEstado(Boolean estado) {
-        Estado = estado;
+        this.estado = estado;
     }
 
     //ToString
     @Override
     public String toString() {
-        return Id_conductor;
+        return id_conductor;
     }
 }

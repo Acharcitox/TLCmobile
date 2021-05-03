@@ -123,7 +123,7 @@ public class OverlayOperador extends AppCompatActivity {
                 }
 
                 } else {
-                    tv_operador.setText("Problema al encontrar cuidacoches seleccionado. Intente nuevamente.");
+                    tv_operador.setText("En Contruccion. Debe elegir un Cuidacoches o un Parking.");
                 }
 
             }

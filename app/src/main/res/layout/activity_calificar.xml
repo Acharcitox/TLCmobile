@@ -38,22 +38,15 @@
             android:inputType="text"
             android:layout_marginTop="36dp"
             tools:ignore="MissingConstraints"
-
+            android:textColorHint="#989191"
+            android:hint="Comentario"
+            android:textColor="@color/black"
             tools:layout_editor_absoluteX="16dp"
             tools:layout_editor_absoluteY="585dp"/>
 
     </LinearLayout>
 
 
-
-    <!--<EditText
-        android:id="@+id/eTCalificacion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="540dp"/>-->
 
     <Button
         android:id="@+id/btnCalificar"
